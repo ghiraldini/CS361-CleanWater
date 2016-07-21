@@ -17,18 +17,7 @@ if(!($stmt = $mysqli->prepare("TRUNCATE locations"))){
 if(!$stmt->execute()){
 	echo "Execute failed: "  . $stmt->errno . " " . $stmt->error;
 } else {
-	echo "Cleared locations table.";
-    echo "<br>";
+	header("Refresh: 0, url=cleanWaterMain.php");
+//	echo "Cleared locations table.";
 }
 ?>
-
-<html>
-    <body>
-    <form action="cleanWaterMain.php">
-        <fieldset>
-            <legend> Return to Homepage: </legend>
-            <input type="submit" id="cleanWaterMain" value="Return">
-        </fieldset>
-    </form>    
-    </body>
-</html>

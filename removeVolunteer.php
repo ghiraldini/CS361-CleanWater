@@ -17,18 +17,7 @@ if(!($stmt = $mysqli->prepare("DELETE FROM volunteers WHERE vid = " . $_POST['Id
 if(!$stmt->execute()){
 	echo "Execute failed: "  . $stmt->errno . " " . $stmt->error;
 } else {
-	echo "Cleared Volunteer ID: " . $_POST["IdNum"] . " from volunteers table.";
-    echo "<br>";
+	header("Refresh: 0, url=cleanWaterMain.php");
+//	echo "Cleared Volunteer ID: " . $_POST["IdNum"] . " from volunteers table.";
 }
 ?>
-
-<html>
-    <body>
-    <form action="cleanWaterMain.php">
-        <fieldset>
-            <legend> Return to Homepage: </legend>
-            <input type="submit" id="cleanWaterMain" value="Return">
-        </fieldset>
-    </form>    
-    </body>
-</html>
