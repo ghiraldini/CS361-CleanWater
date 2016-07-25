@@ -92,6 +92,8 @@ if($mysqli->connect_errno){
                 <th>Start Date</th>
                 <th>End Date</th>
             </tr>
+
+	<!-- MySqli Statements to fill table after freshing database -->
             
             <?php
 if(!($stmt = $mysqli->prepare("SELECT * FROM volunteers"))){
@@ -152,7 +154,7 @@ $stmt->close();
                 <th>City</th>
                 <th>Occupation Needed</th>
             </tr>
-            
+        <!-- MySqli statements for filling table -->    
             <?php
 if(!($stmt = $mysqli->prepare("SELECT * FROM locations"))){
 	echo "Prepare failed: "  . $stmt->errno . " " . $stmt->error;
