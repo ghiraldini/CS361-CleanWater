@@ -1,0 +1,34 @@
+Functionality order of precedence
+
+1.  Volunteer creates a user profile
+2.  Community partners can submit volunteer opportunities
+3.  Filter volunteer opportunities to match user (matching algorithm)
+4.  Volunteer can message a volunteer opportunity coordinator
+5.  User can view possible volunteer opportunities
+6.  Opportunity coordinator can respond to messages from volunteers
+7.  User lands on website homepage
+8.  Volunteer profile added to database
+9.  Volunteer can login with username and password
+10. Volunteer logs out of site
+11. Volunteer can edit their profile
+12. Admin can upload volunteer opportunities to database
+13. System updates volunteer opportunities after profile edit 
+
+
+Unit tests for project functionality
+
+#1: Volunteer creates a user profile
+
+Website alerts user when leaving a field blank, and does not create profile in database until all required fields are completed.
+Website alerts user when dates do not make sense (start > end), and does not create profile in database until all required fields are completed.
+Website allows users to enter hyphenated words in form fields. (i.e. hyphenated last name Smith-Jones)
+Alerts user if they already have an existing profile (Use email address as a unique field in database), and does not create profile in database until all required fields are completed.
+
+#2: Community partners can submit volunteer opportunities
+
+Website alerts user when leaving a field blank, and does not create opportunity in database until all required fields are completed.
+Website alerts user when dates do not make sense (start > end), and does not create opportunity in database until all required fields are completed.
+Website alerts user if opportunity description is too long, and does not create opportunity in database until all required fields are completed.
+Website alerts user if the opportunity already exists in database, and does not create a duplicate opportunity in the database.
+
+#3: Filter volunteer opportunities to match user (matching algorithm)
