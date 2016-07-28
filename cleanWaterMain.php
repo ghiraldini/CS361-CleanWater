@@ -8,6 +8,18 @@ if($mysqli->connect_errno){
 	}
 ?>
 
+<script>
+function compare() {
+    var startDate = new Date(document.getElementById("startDate").value);
+    var endDate = new Date(document.getElementById("endDate").value);
+
+    if (startDate.getTime() > endDate.getTime()) {
+        alert ("End Date is before Start Date");
+				return false;
+    }
+}
+</script>
+
     <!DOCTYPE html>
     <html>
 
@@ -22,30 +34,65 @@ if($mysqli->connect_errno){
     <body>
         <h1> Clean Water Database </h1>
         <!--//----------------------------------VOLUNTEERS FORM--------------------------------------------->
-        <form method="post" action="addVolunteer.php">
+        <form name="volunteerForm" onsubmit="return compare()" method="post" action="addVolunteer.php">
             <fieldset>
                 <legend>Volunteer Sign Up: </legend>
                 <fieldset>
                     <label> First Name:
-                        <input type="text" name="fname" id="fname">
+                        <input type="text" name="fname" id="fname" required>
                     </label>
                     </br>
                     <label> Last Name:
-                        <input type="text" name="lname" id="lname">
+                        <input type="text" name="lname" id="lname" required>
                     </label>
                     </br>
+										<label> Email:
+											<input type="text" name="email" id="email" required>
+										</label>
+										<br>
+										<label> Occupation:
+										<select name="occupation" required>
+										<option value=>Select</option>
+									   <option value="doctor">Doctor</option>
+									   <option value="teacher">Teacher</option>
+									   <option value="engineer">Engineer</option>
+									 </select>
+								 </label>
+								 </br>
+								 <label> Region:
+									 <select name="region" id="region" required>
+										<!-- If user wants to add multiple regions - TBD
+										<input type="radio" name="northAmerica" value="North America"> North America
+										<input type="radio" name="southAmerica" value="South America"> South America -->
+										 <option value=>Select</option>
+										 <option value="northAmerica">North America</option>
+										 <option value="centralAmerica">Central America</option>
+										 <option value="southAmerica">South America</option>
+										 <option value="europe">Europe</option>
+										 <option value="asia">Asia</option>
+										 <option value="india">India</option>
+										 <option value="Australia">Australia</option>
+										 <option value="newZealand">New Zealand</option>
+										 <option value="russia">Russia</option>
+
+									 </select>
+								 </label>
+									 <!--
                     <label> Occupation:
                         <input type="text" name="occupation" id="occupation">
                     </label>
+									-->
                     </br>
                     <label> Start Date:
-                        <input type="date" name="startDate" id="startDate">
+                        <input type="date" name="startDate" id="startDate" required>
                     </label>
+
                     <label> End Date:
-                        <input type="date" name="endDate" id="endDate">
+                        <input type="date" name="endDate" id="endDate" required>
                     </label>
+
                     </br>
-                    <input type="submit" id="volunteerSubmit" value="Add Volunteer">
+                    <input type="submit" id="volunteerSubmit" value="Add Volunteer" required>
                 </fieldset>
             </fieldset>
         </form>
@@ -55,21 +102,61 @@ if($mysqli->connect_errno){
         <!--//---------------------------------LOCATIONS IN NEED FORM------------------------------------>
         <form action="addLocation.php" method="post">
             <fieldset>
-                <legend> Add Location: </legend>
+                <legend> Opputunity Location: </legend>
                 <fieldset>
+							 <label> Region:
+								 <select name="region" id="region" required>
+									<!-- If user wants to add multiple regions - TBD
+									<input type="radio" name="northAmerica" value="North America"> North America
+									<input type="radio" name="southAmerica" value="South America"> South America -->
+									 <option value=>Select</option>
+									 <option value="northAmerica">North America</option>
+									 <option value="centralAmerica">Central America</option>
+									 <option value="southAmerica">South America</option>
+									 <option value="europe">Europe</option>
+									 <option value="asia">Asia</option>
+									 <option value="india">India</option>
+									 <option value="Australia">Australia</option>
+									 <option value="newZealand">New Zealand</option>
+									 <option value="russia">Russia</option>
+
+								 </select>
+							 </label>
+							 <br>
                     <label> Country:
-                        <input type="text" name="country" id="country">
+                        <input type="text" name="country" id="country" required>
                     </label>
                     </br>
                     <label> City:
-                        <input type="text" name="city" id="city">
+                        <input type="text" name="city" id="city" required>
                     </label>
                     </br>
+										<label> Coordinator Email:
+											<input type="text" name="email" id="email" required>
+										</label>
+										<br>
+										<label> Coordinator Phone Number:
+											<input type="text" name="phoneNum" id="phoneNum" required>
+										</label>
+									</br>
                     <label> Needed expertise:
-                        <input type="text" name="need" id="need">
+                        <input type="text" name="need" id="need" required>
                     </label>
-            
+										<br>
+										<label> Oppurtunity Description (Max 255 characters):
+											<br>
+												<input type="textbox" name="jobdesc" style="height: 100px; width: 400px" maxlength="255"><br>
+										</label>
                     </br>
+									<label> Start Date:
+											<input type="date" name="startDate" id="startDate" required>
+									</label>
+
+									<label> End Date:
+											<input type="date" name="endDate" id="endDate" required>
+									</label>
+									<br>
+
                     <input type="submit" id="locationSubmit" value="Add Location">
                 </fieldset>
             </fieldset>
@@ -81,20 +168,22 @@ if($mysqli->connect_errno){
 <!--//      ----------------------------------ALL VOLUNTEERS------------------------------------------//        ----->
 <!-- ------- ------- ------- ------- ------- ------- ------- ------- ------- ------- ------- ------- ------- ----- -->
 
-        <h2> All Volunteers </h2>
-        
+        <h2> Volunteers </h2>
+
         <table align="center" id="volunteers">
             <tr>
                 <th>ID </th>
                 <th>First Name</th>
                 <th>Last Name</th>
+								<th>Email</th>
                 <th>Occupation</th>
+								<th>Region</th>
                 <th>Start Date</th>
                 <th>End Date</th>
             </tr>
 
 	<!-- MySqli Statements to fill table after freshing database -->
-            
+
             <?php
 if(!($stmt = $mysqli->prepare("SELECT * FROM volunteers"))){
 	echo "Prepare failed: "  . $stmt->errno . " " . $stmt->error;
@@ -102,13 +191,14 @@ if(!($stmt = $mysqli->prepare("SELECT * FROM volunteers"))){
 if(!$stmt->execute()){
 	echo "Execute failed: "  . $mysqli->connect_errno . " " . $mysqli->connect_error;
 }
-if(!$stmt->bind_result($vid, $first_name, $last_name, $occupation, $startDate, $endDate)){
+if(!$stmt->bind_result($vid, $first_name, $last_name, $email, $occupation, $region, $startDate, $endDate)){
 	echo "Bind failed: "  . $mysqli->connect_errno . " " . $mysqli->connect_error;
 }
 while($stmt->fetch()){
 	$newStartDate = date( "Y-m-d", strtotime( $startDate ) );
 	$newEndDate = date( "Y-m-d", strtotime( $endDate ) );
-	echo "<tr>\n<td>\n" . $vid . "\n</td>\n<td>\n". $first_name . "\n</td>\n<td>\n" . $last_name . "\n</td>\n<td>\n" . $occupation . "\n</td>\n<td>\n" . $newStartDate . "\n</td>\n<td>\n" . $newEndDate . "\n</td>\n</tr>";
+	echo "<tr>\n<td>\n" . $vid . "\n</td>\n<td>\n" . $first_name . "\n</td>\n<td>\n" . $last_name . "\n</td>\n<td>\n" . $email . "\n</td>\n<td>\n" . $occupation . "\n</td>\n<td>\n" . $region . "\n</td>\n<td>\n"
+	. $newStartDate . "\n</td>\n<td>\n" . $newEndDate . "\n</td>\n</tr>";
 }
 $stmt->close();
 ?>
@@ -145,16 +235,22 @@ $stmt->close();
 <!-- ------- ------- ------- ------- ------- ------- ------- ------- ------- ------- ------- ------- ------- ----- -->
 
 
-        <h2> All Locations </h2>
+        <h2> Oppurtunities </h2>
 
         <table align="center" id="locations">
             <tr>
                 <th>ID </th>
+								<th>Region </th>
                 <th>Country</th>
                 <th>City</th>
+								<th>Coordinator Email</th>
+								<th>Coordinator Phone Number</th>
                 <th>Occupation Needed</th>
+								<th>Oppurtunity Description</th>
+								<th>Start Date</th>
+								<th>End Date</th>
             </tr>
-        <!-- MySqli statements for filling table -->    
+        <!-- MySqli statements for filling table -->
             <?php
 if(!($stmt = $mysqli->prepare("SELECT * FROM locations"))){
 	echo "Prepare failed: "  . $stmt->errno . " " . $stmt->error;
@@ -162,11 +258,11 @@ if(!($stmt = $mysqli->prepare("SELECT * FROM locations"))){
 if(!$stmt->execute()){
 	echo "Execute failed: "  . $mysqli->connect_errno . " " . $mysqli->connect_error;
 }
-if(!$stmt->bind_result($lid, $country, $city, $need)){
+if(!$stmt->bind_result($lid, $region, $country, $city, $need)){
 	echo "Bind failed: "  . $mysqli->connect_errno . " " . $mysqli->connect_error;
 }
 while($stmt->fetch()){
- echo "<tr>\n<td>\n" . $lid . "\n</td>\n<td>\n". $country . "\n</td>\n<td>\n" . $city .  "\n</td>\n<td>\n". $need . "\n</td>\n</tr>";
+ echo "<tr>\n<td>\n" . $lid . "\n</td>\n<td>\n" . $region . "\n</td>\n<td>\n". $country . "\n</td>\n<td>\n" . $city .  "\n</td>\n<td>\n". $need . "\n</td>\n</tr>";
 }
 $stmt->close();
 ?>
@@ -194,10 +290,6 @@ $stmt->close();
             </fieldset>
             </fieldset>
         </form>
-
-
-
-
 
     </body>
 

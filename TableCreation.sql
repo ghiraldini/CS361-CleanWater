@@ -1,15 +1,20 @@
+
 CREATE TABLE volunteers (
     vid SMALLINT NOT NULL AUTO_INCREMENT,
     first_name VARCHAR(255) NOT NULL,
     last_name VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL UNIQUE,
     occupation VARCHAR(255) NOT NULL,
+    region VARCHAR(255) NOT NULL,
     startDate VARCHAR(255) NOT NULL,
     endDate VARCHAR(255) NOT NULL,
-    PRIMARY KEY (vid)
+    PRIMARY KEY (vid),
+    KEY (email)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE locations (
     lid SMALLINT NOT NULL AUTO_INCREMENT,
+    region VARCHAR(255) NOT NULL,
     country VARCHAR(255) NOT NULL,
     city VARCHAR(255) NOT NULL,
     need VARCHAR(255) NOT NULL,

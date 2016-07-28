@@ -5,10 +5,10 @@ if(!$mysqli || $msqli->connect_errno){
 	echo "Connection error " . $mysqli->connect_errno . " " . $mysqli->connect_error;
 }
 // Add Volunteer to volunteer table
-if(!($stmt = $mysqli->prepare("INSERT INTO volunteers (first_name, last_name, occupation, startDate, endDate) VALUES (?, ?, ?, ?, ?)"))){
+if(!($stmt = $mysqli->prepare("INSERT INTO volunteers (first_name, last_name, email, occupation, region, startDate, endDate) VALUES (?, ?, ?, ?, ?, ?, ?)"))){
 	echo "Prepare failed: "  . $stmt->errno . " " . $stmt->error;
 }
-if(!($stmt->bind_param("sssss",$_POST['fname'],$_POST['lname'],$_POST['occupation'],$_POST['startDate'],$_POST['endDate']))){
+if(!($stmt->bind_param("sssssss",$_POST['fname'],$_POST['lname'],$_POST['email'],$_POST['occupation'],$_POST['region'],$_POST['startDate'],$_POST['endDate']))){
 	echo "Bind failed: "  . $stmt->errno . " " . $stmt->error;
 }
 if(!$stmt->execute()){
