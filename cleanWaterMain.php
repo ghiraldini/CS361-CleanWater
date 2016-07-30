@@ -2,8 +2,8 @@
 //Turn on error reporting
 ini_set('display_errors', 'On');
 //Connects to the database
-$mysqli = new mysqli("oniddb.cws.oregonstate.edu","ghiraldj-db","v1bptepGowZ4t1OE","ghiraldj-db");
-//$mysqli = new mysqli("oniddb.cws.oregonstate.edu","thrashek-db","QybR0dsOjULZ4QtZ","thrashek-db");
+//$mysqli = new mysqli("oniddb.cws.oregonstate.edu","ghiraldj-db","v1bptepGowZ4t1OE","ghiraldj-db");
+$mysqli = new mysqli("oniddb.cws.oregonstate.edu","thrashek-db","QybR0dsOjULZ4QtZ","thrashek-db");
 if($mysqli->connect_errno){
 	echo "Connection error " . $mysqli->connect_errno . " " . $mysqli->connect_error;
 	}
@@ -54,13 +54,39 @@ function compare() {
 										<label> Occupation:
 										<select name="occupation" required>
 										<option value=>Select</option>
-									   <option value="doctor">Doctor</option>
-									   <option value="teacher">Teacher</option>
-									   <option value="engineer">Engineer</option>
+									   <option value="Doctor">Doctor</option>
+									   <option value="Teacher">Teacher</option>
+									   <option value="Engineer">Engineer</option>
+                                                <option value="Other">Other</option>
 									 </select>
 								 </label>
 								 </br>
-								 <label> Region:
+                          <label>
+                                   Season:
+                               <select name="season" required="">
+                                    <option value="">Select</option>
+                                    <option value="Winter">Winter</option>
+                                    <option value="Spring">Spring</option>
+                                    <option value="Summer">Summer</option>
+                                    <option value="Fall">Fall</option>
+                               </select>
+                          </label>
+                     </br>
+                          <label>
+                               Days:
+                               <select name="days" required="">
+                                    <option value="">Select</option>
+                                    <option value="0-7">0-7</option>
+                                    <option value="8-14">8-14</option>
+                                    <option value="15-21">15-21</option>
+                                    <option value="22+">22+</option>
+                               </select>
+                          </label>
+                     </br>
+
+
+
+                     <label> Region:
 									 <select name="region" id="region" required>
 										<!-- If user wants to add multiple regions - TBD
 										<input type="radio" name="northAmerica" value="North America"> North America
@@ -103,7 +129,7 @@ function compare() {
         <!--//---------------------------------LOCATIONS IN NEED FORM------------------------------------>
         <form action="addLocation.php" method="post">
             <fieldset>
-                <legend> Opputunity Location: </legend>
+                <legend> Opportunity Location: </legend>
                 <fieldset>
 							 <label> Region:
 								 <select name="region" id="region" required>
@@ -133,20 +159,61 @@ function compare() {
                     </label>
                     </br>
 										<label> Coordinator Email:
-											<input type="text" name="email" id="email" required>
+											<input type="text" name="cemail" id="cemail" required>
 										</label>
 										<br>
 										<label> Coordinator Phone Number:
-											<input type="text" name="phoneNum" id="phoneNum" required>
+											<input type="text" name="cphone" id="cphone" required>
 										</label>
 									</br>
-                    <label> Needed expertise:
+                <!--    <label> Needed expertise:
                         <input type="text" name="need" id="need" required>
                     </label>
-										<br>
-										<label> Oppurtunity Description (Max 255 characters):
+                     </br>-->
+                     
+                          <label>
+                          Needed Occupation:
+                          <select name="needoccupation" required="">
+                               <option value="">Select</option>
+                               <option value="needdoctor">Doctor</option>
+                               <option value="needteacher">Teacher</option>
+                               <option value="needengineer">Engineer</option>
+                               <option value="needother">Other</option>
+                          </select>
+                     </label>
+                     </br>
+                    
+                          <label>
+                               Needed Season:
+                               <select name="needseason" required="">
+                                    <option value="">Select</option>
+                                    <option value="needwinter">Winter</option>
+                                    <option value="needspring">Spring</option>
+                                    <option value="needsummer">Summer</option>
+                                    <option value="needfall">Fall</option>
+                               </select>
+                          </label>
+                     </br>
+                     
+                          <label>
+                               Needed Days:
+                               <select name="needdays" required="">
+                                    <option value="">Select</option>
+                                    <option value="needoneweek">0-7</option>
+                                    <option value="needtwoweek">8-14</option>
+                                    <option value="needthreeweek">15-21</option>
+                                    <option value="needmoreweek">22+</option>
+                               </select>
+                          </label>
+                     </br>					
+                     
+                     
+                     
+                     
+                     <br>
+										<label> Opportunity Description (Max 255 characters):
 											<br>
-												<input type="textbox" name="jobdesc" style="height: 100px; width: 400px" maxlength="255"><br>
+												<input type="textbox" name="opdesc" style="height: 100px; width: 400px" maxlength="255"><br>
 										</label>
                     </br>
 									<label> Start Date:
@@ -178,7 +245,10 @@ function compare() {
                 <th>Last Name</th>
 								<th>Email</th>
                 <th>Occupation</th>
-								<th>Region</th>
+			
+                 <th>Season</th>
+                 <th>Days</th>
+                 <th>Region</th>
                 <th>Start Date</th>
                 <th>End Date</th>
             </tr>
@@ -192,14 +262,15 @@ if(!($stmt = $mysqli->prepare("SELECT * FROM volunteers"))){
 if(!$stmt->execute()){
 	echo "Execute failed: "  . $mysqli->connect_errno . " " . $mysqli->connect_error;
 }
-if(!$stmt->bind_result($vid, $first_name, $last_name, $email, $occupation, $region, $startDate, $endDate)){
+if(!$stmt->bind_result($vid, $first_name, $last_name, $email, $occupation, $season, $days, $region, $startDate, $endDate)){
 	echo "Bind failed: "  . $mysqli->connect_errno . " " . $mysqli->connect_error;
 }
 while($stmt->fetch()){
 	$newStartDate = date( "Y-m-d", strtotime( $startDate ) );
 	$newEndDate = date( "Y-m-d", strtotime( $endDate ) );
-	echo "<tr>\n<td>\n" . $vid . "\n</td>\n<td>\n" . $first_name . "\n</td>\n<td>\n" . $last_name . "\n</td>\n<td>\n" . $email . "\n</td>\n<td>\n" . $occupation . "\n</td>\n<td>\n" . $region . "\n</td>\n<td>\n"
-	. $newStartDate . "\n</td>\n<td>\n" . $newEndDate . "\n</td>\n</tr>";
+	echo "<tr>\n<td>\n" . $vid . "\n</td>\n<td>\n" . $first_name . "\n</td>\n<td>\n" . $last_name . "\n</td>\n<td>\n" . $email . "\n</td>\n<td>\n" . 
+     $occupation . "\n</td>\n<td>\n" . $season . "\n</td>\n<td>\n" . 
+     $days . "\n</td>\n<td>\n" . $region . "\n</td>\n<td>\n" . $newStartDate . "\n</td>\n<td>\n" . $newEndDate . "\n</td>\n</tr>";
 }
 $stmt->close();
 ?>
@@ -236,7 +307,7 @@ $stmt->close();
 <!-- ------- ------- ------- ------- ------- ------- ------- ------- ------- ------- ------- ------- ------- ----- -->
 
 
-        <h2> Oppurtunities </h2>
+        <h2> Opportunities </h2>
 
         <table align="center" id="locations">
             <tr>
@@ -247,7 +318,9 @@ $stmt->close();
 								<th>Coordinator Email</th>
 								<th>Coordinator Phone Number</th>
                 <th>Occupation Needed</th>
-								<th>Oppurtunity Description</th>
+                 <th>Season Needed</th>
+                 <th>Hours Needed</th>
+								<th>Opportunity Description</th>
 								<th>Start Date</th>
 								<th>End Date</th>
             </tr>
@@ -259,12 +332,15 @@ if(!($stmt = $mysqli->prepare("SELECT * FROM locations"))){
 if(!$stmt->execute()){
 	echo "Execute failed: "  . $mysqli->connect_errno . " " . $mysqli->connect_error;
 }
-if(!$stmt->bind_result($lid, $region, $country, $city, $need)){
+if(!$stmt->bind_result($lid, $region, $country, $city, $cemail, $cphone, $needoccupation, $needseason, $needdays, $opdesc, $startDate, $endDate)){
 	echo "Bind failed: "  . $mysqli->connect_errno . " " . $mysqli->connect_error;
 }
 while($stmt->fetch()){
- echo "<tr>\n<td>\n" . $lid . "\n</td>\n<td>\n" . $region . "\n</td>\n<td>\n". $country . "\n</td>\n<td>\n" . $city .  "\n</td>\n<td>\n". $need . "\n</td>\n</tr>";
+ echo "<tr>\n<td>\n" . $lid . "\n</td>\n<td>\n" . $region . "\n</td>\n<td>\n". $country . "\n</td>\n<td>\n" . $city .  "\n</td>\n<td>\n". $cemail .  "\n</td>\n<td>\n".
+ $cphone .  "\n</td>\n<td>\n". $needoccupation .  "\n</td>\n<td>\n". $needseason .  "\n</td>\n<td>\n".  $needdays . "\n</td>\n<td>\n".  $opdesc . "\n</td>\n<td>\n". 
+ $startDate . "\n</td>\n<td>\n".  $endDate . "\n</td>\n</tr>";
 }
+
 $stmt->close();
 ?>
         </table>

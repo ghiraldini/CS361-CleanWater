@@ -19,8 +19,14 @@ CREATE TABLE locations (
     region VARCHAR(255) NOT NULL,
     country VARCHAR(255) NOT NULL,
     city VARCHAR(255) NOT NULL,
+    cemail VARCHAR(255) NOT NULL,
+    cphone VARCHAR(255) NOT NULL,
     need VARCHAR(255) NOT NULL,
     season VARCHAR(255) NOT NULL,
     days VARCHAR(255) NOT NULL,
+    opdesc VARCHAR(255) NOT NULL,
+    startDate VARCHAR(255) NOT NULL,
+    endDate VARCHAR(255) NOT NULL,
     PRIMARY KEY (lid)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
