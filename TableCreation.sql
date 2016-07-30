@@ -5,6 +5,8 @@ CREATE TABLE volunteers (
     last_name VARCHAR(255) NOT NULL,
     email VARCHAR(255) NOT NULL UNIQUE,
     occupation VARCHAR(255) NOT NULL,
+    season VARCHAR(255) NOT NULL,
+    days VARCHAR(255) NOT NULL, 
     region VARCHAR(255) NOT NULL,
     startDate VARCHAR(255) NOT NULL,
     endDate VARCHAR(255) NOT NULL,
@@ -18,5 +20,7 @@ CREATE TABLE locations (
     country VARCHAR(255) NOT NULL,
     city VARCHAR(255) NOT NULL,
     need VARCHAR(255) NOT NULL,
+    season VARCHAR(255) NOT NULL,
+    days VARCHAR(255) NOT NULL,
     PRIMARY KEY (lid)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
