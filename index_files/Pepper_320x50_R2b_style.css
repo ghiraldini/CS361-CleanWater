@@ -1,0 +1,98 @@
+@charset "utf-8";
+/* CSS Document */
+
+body {
+	margin:0 auto;
+	padding:0;
+}
+
+.btn {
+	display: block;
+	position: absolute;
+	background-color:#000;
+	cursor: pointer;
+	opacity: 0;
+}
+
+.img {
+	display: block;
+	position: absolute;
+	width: 320px;
+	height: 50px;
+}
+
+.arm-img { 
+    display: block;
+    position: absolute;
+
+    top: -1px;
+    left: 180px;
+
+    -webkit-transform-origin: center 80%; transform-origin: center 80%;
+}
+
+#container { width:320px; height:50px; top:0px; overflow: hidden; position:absolute; box-sizing: border-box; border: 1px solid #000; background-color:#94ced5;
+	cursor: pointer;
+	display:none;
+}
+
+#screenImg {
+	 -webkit-transform-origin: center 40%; transform-origin: center 40%;
+}
+
+#ctaHover {
+    display: block;
+    position: absolute;
+
+    width: 86px;
+    height: 33px;
+    top: 9px;
+    left: 216px;
+
+    overflow: hidden;
+}
+
+#glowImg {
+    position: absolute;
+    left: -150px;
+}
+
+/* SPRITESHEET */
+.sprite {
+    background-image: url(Pepper_320x50_R2b_spritesheet.png);
+    background-repeat: no-repeat;
+    display: block;
+}
+
+.sprite-copy1 {
+    width: 320px;
+    height: 50px;
+    background-position: -5px -5px;
+}
+
+.sprite-cta {
+    width: 320px;
+    height: 50px;
+    background-position: -5px -65px;
+}
+
+.sprite-ctaText {
+    width: 320px;
+    height: 50px;
+    background-position: -5px -125px;
+}
+
+.sprite-eyes {
+    width: 320px;
+    height: 50px;
+    background-position: -5px -185px;
+}
+
+.sprite-glow {
+    width: 145px;
+    height: 40px;
+    background-position: -5px -245px;
+}
+
+/* Clickthrough */
+#bg_clickthrough { width:320px; height:50px; }

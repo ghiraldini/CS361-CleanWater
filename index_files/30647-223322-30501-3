@@ -1,0 +1,96 @@
+
+(function (window, undefined) {
+	"use strict";
+	if (!mplx) {
+	  var mplx = {};
+	}
+	mplx.outVars = {
+		"mpcke": "<mpcke/>",
+		"mpi": "<mpi/>",
+		"mpcrgif": "<mpcrgif/>",
+		"mpcrw": "<mpcrw/>",
+		"mpcrh": "<mpcrh/>",
+		"mpadmarker": "<mpadmarker/>",
+		"mpadmarkerurl": "<mpadmarkerurl/>",
+		"mpcrflash": "<mpcrflash/>",
+		"mpcrid": "<mpcrid/>",
+		"geozip": "<geozip/>",
+		"geocity": "<geocity/>",
+		"geoareacode": "<geoareacode/>",
+		"geocountry": "<geocountry/>",
+		"geostate": "<geostate/>",
+		"geotz": "<geotz/>",
+		"geocontinent": "<geocontinent/>",
+		"geodma": "<geodma/>",
+		"ptoffsetyear": "<ptoffsetyear/>",
+		"ptoffsetmonth": "<ptoffsetmonth/>",
+		"ptoffsetday": "<ptoffsetday/>",
+		"ptoffsethour": "<ptoffsethour/>",
+		"ptoffsetmin": "<ptoffsetmin/>",
+		"refdomain": "<refdomain/>",
+		"placementid": "<placementid/>",
+		"mpaltexp": "<mpaltexp/>",
+		"mpaltflash": "<mpaltflash/>",
+		"mpanimate": "<mpanimate/>",
+		"mpauto": "<mpauto/>",
+		"mpcrflash2": "<mpcrflash2/>",
+		"mpcrflv": "<mpcrflv/>",
+		"mpcrgif2": "<mpcrgif2/>",
+		"mpcrn": "<mpcrn/>",
+		"mpcrn_aol": "<mpcrn_aol/>",
+		"mpcrpv": "<mpcrpv/>",
+		"mpcrwin": "<mpcrwin/>",
+		"mpcrwinex": "<mpcrwinex/>",
+		"mpcrx": "<mpcrx/>",
+		"mpcrxh": "<mpcrxh/>",
+		"mpcrxw": "<mpcrxw/>",
+		"mpcry": "<mpcry/>",
+		"mpcrz": "<mpcrz/>",
+		"mpexdelay": "<mpexdelay/>",
+		"mpexpandspeed": "<mpexpandspeed/>",
+		"mphd": "<mphd/>",
+		"mpmouseout": "<mpmouseout/>",
+		"mpocd": "<mpocd/>",
+		"mpoverflow": "<mpoverflow/>",
+		"mpovrly": "<mpovrly/>",
+		"mppshdwn": "<mppshdwn/>",
+		"mpretdelay": "<mpretdelay/>",
+		"mprmtype": "<mprmtype/>",
+		"mpretractspeed": "<mpretractspeed/>",
+		"mpsingle": "<mpsingle/>",
+		"mpsv": "<mpsv/>",
+		"mpswfoffset": "<mpswfoffset/>",
+		"mpvd": "<mpvd/>",
+		"mpssl": "1",
+		"mpck": "adfarm.mediaplex.com/ad/ck/30647-223322-30501-3?mpt=984766261&mpcs=bypass&mpcr=99098953&mpcrset=root",
+		"mpvc": "https://adserver.adtechus.com/adlink/5399/4126133/0/3055/AdId=8494272;BnId=1;itime=984766261;kvp36=p36-0pqiqx7t3tupngqc;kva=p-hd8xfnrqr2tv0;kr14135=2409618;kvc=889373;kvi=v54v_galdaakyn4rbgfokg;kr11092=2420117;kvl=231867;kvs=320x50;kp=1192502;link=https://adclick.g.doubleclick.net/aclk?sa=l&ai=C84GP_i-eV6DrLZH8iQOqnJ8wr8DxlEbWoYeYrwHAjbcBEAEgAGDJ7uuGyKOgGYIBF2NhLXB1Yi0xOTkzMzkzNzM4NDA4MDc2oAHQlMDzA8gBCeACAKgDAaoEuQFP0CExPBnw-2RSyQ3HFodpfITBXU57gjH3eUmzI5SiECv8E_ak7gzkPjIX7hwes7QyLPcg7TkSIRldY0gQiZ_sNt-1MngZaGnro6PaoQpDTbp1ZBQ5odcNCKiDTFbHhZqy8YNSdtwZu-hIbMqzRnoucxReA-gD4aNIpOpEYJNtXQybmT5BraBpMLuhzXHls8dDWd_ocPO2rDsEAQaoQSBjdo7b6BLBP0UBUiz71T9DtYiSIjEb4EGW5uAEAYAGttaino79jYOMAaAGIagHpr4b2AcA&num=1&sig=AOD64_3GVeLnIbN0JFQtulmqprNhdIvEJw&client=ca-pub-1993393738408076&adurl=http://exch.quantserve.com/r?a=p-hd8Xfnrqr2TV0;labels=_qc.clk,_click.adserver.rtb,_click.rand.246;rtbip=64.7.204.113;rtbdata2=EAAaIlBlcHBlclJvYm90X0RldmVsb3BlckNhbXBhaWduX0p1bHkg0J8bKLuTDjCdpDY6GGh0dHA6Ly93d3cudzNzY2hvb2xzLmNvbVooOGY5UkRfTDZCZ1hwLUFZS3BhMU9ENkNxVkFUcHF3ZGJfS3VIVm9wRnWwabdFgAHD6dGWDqABAagBoZXvAroBHUNBRVNFQ05wV0JPbVhjV1dsSmtnQ0Zvc3ppVToxwAGRhaMByAH-9q2P5CraARZWNTR2X2dBTGRhQUtZbjRSQmdmT0tn5QHGGJs86AFkmALH5g-oAgWoAgawAgi6AgRAB8xxwAICyAIA0ALg6NvTjJjT7ZkB4AIA;redirecturl2="
+	};
+
+	mplx.mpqs = "mpt=984766261&mpcs=bypass";
+	mplx.mpqs = (mplx.mpqs !== "") ? mplx.mpqs : "";
+	for (var props in mplx.outVars) {
+		if (mplx.outVars[props].indexOf("/>") < 0 ) {
+			mplx.mpqs += "&" + props + "=" + encodeURIComponent(mplx.outVars[props]);
+		}
+	}
+
+	mplx.iFrameSrc = (mplx.outVars.mpssl == 1 ? "https://img.mediaplex.com/content/0" : "http://img.mediaplex.com/content/0") + "/30647/223322/Pepper_320x50_R2b_index.html" + "?" + mplx.mpqs;
+	mplx.mojoframe = '<iframe border="0" src="' + mplx.iFrameSrc + '" width="320" height="50" marginwidth="0" marginheight="0" hspace="0" vspace="0" frameborder="0" scrolling="no" bordercolor="#000000"></iframe>';
+	document.write(mplx.mojoframe);
+
+	mplx.randJSI = Math.floor(Math.random()*100000+1);
+	document.write('<div id="mojoJSI_' + mplx.randJSI +'" style="height:0px; width:0px;"></div>');
+	mplx.mpjs = String("<mpjsp/>");
+	if (mplx.mpjs && typeof mplx.mpjs === "string" && mplx.mpjs.length > 0 && mplx.mpjs!="<mp"+"jsp/>") {
+		mplx.mpscr = {};
+		mplx.mojoTiny = document.getElementById("mojoJSI_" + mplx.randJSI);
+		mplx.mpjs = mplx.mpjs.split( " " );
+		for( var i = 0; i < mplx.mpjs.length; i++ ) {
+			mplx.mpscr = document.createElement("script");
+			mplx.mpscr.type = "text/javascript";
+			mplx.mpscr.async = true;
+			mplx.mpscr.src = mplx.mpjs[i];
+			mplx.mojoTiny.appendChild(mplx.mpscr);
+		}
+	}
+})(window);
