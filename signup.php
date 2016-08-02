@@ -98,7 +98,7 @@
                 <!--Days Available-->
                 <label class="col-md-1">Days:</label>
                 <div class="col-md-3">
-                    <select class="form-control col-md-6" name="days" required="">
+                    <select class="form-control col-md-6" name="days" id="days" required="">
                         <option value="">Select</option>
                         <option value="oneweek">0-7</option>
                         <option value="twoweek">8-14</option>
