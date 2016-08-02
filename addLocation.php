@@ -13,7 +13,7 @@ if(!($stmt = $mysqli->prepare("INSERT INTO locations (region, country, city, cem
 	echo "Prepare failed: "  . $stmt->errno . " " . $stmt->error;
 }
 if(!($stmt->bind_param("sssssssssss", $_POST['region'], $_POST['country'], $_POST['city'], $_POST['cemail'], $_POST['cphone'],
-$_POST['needoccupation'], $_POST['needseason'], $_POST['needdays'], $_POST['opdesc'], $_POST['startDate'], $_POST['endDate']))){
+$_POST['occupation'], $_POST['season'], $_POST['days'], $_POST['opdesc'], $_POST['startDate'], $_POST['endDate']))){
 	echo "Bind failed: "  . $stmt->errno . " " . $stmt->error;
 }
 if(!$stmt->execute()){
