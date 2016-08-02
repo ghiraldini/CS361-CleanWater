@@ -2,9 +2,9 @@
 //Turn on error reporting
 ini_set('display_errors', 'On');
 //Connects to the database
-//$mysqli = new mysqli("oniddb.cws.oregonstate.edu","ghiraldj-db","v1bptepGowZ4t1OE","ghiraldj-db");
+$mysqli = new mysqli("oniddb.cws.oregonstate.edu","ghiraldj-db","v1bptepGowZ4t1OE","ghiraldj-db");
 //$mysqli = new mysqli("oniddb.cws.oregonstate.edu","thrashek-db","QybR0dsOjULZ4QtZ","thrashek-db");
-$mysqli = new mysqli("oniddb.cws.oregonstate.edu","moondav-db","BUyiIi84msF2NNtI","moondav-db");
+//$mysqli = new mysqli("oniddb.cws.oregonstate.edu","moondav-db","BUyiIi84msF2NNtI","moondav-db");
 
 
 if($mysqli->connect_errno){
@@ -61,10 +61,10 @@ if($mysqli->connect_errno){
                                    Occupation:
                                    <select name="occupation" required="">
                                         <option value="">Select</option>
-                                        <option value="Doctor">Doctor</option>
-                                        <option value="Teacher">Teacher</option>
-                                        <option value="Engineer">Engineer</option>
-                                        <option value="Other">Other</option>
+                                        <option value="doctor">Doctor</option>
+                                        <option value="teacher">Teacher</option>
+                                        <option value="engineer">Engineer</option>
+                                        <option value="other">Other</option>
                                    </select>
                               </label>
                          </br>
@@ -72,10 +72,10 @@ if($mysqli->connect_errno){
                               Season:
                               <select name="season" required="">
                                    <option value="">Select</option>
-                                   <option value="Winter">Winter</option>
-                                   <option value="Spring">Spring</option>
-                                   <option value="Summer">Summer</option>
-                                   <option value="Fall">Fall</option>
+                                   <option value="winter">Winter</option>
+                                   <option value="spring">Spring</option>
+                                   <option value="summer">Summer</option>
+                                   <option value="fall">Fall</option>
                               </select>
                          </label>
                          </br>
@@ -107,7 +107,7 @@ if($mysqli->connect_errno){
                                    <option value="asia">Asia</option>
                                    <option value="africa">Africa</option>
                                    <option value="india">India</option>
-                                   <option value="Australia">Australia</option>
+                                   <option value="australia">Australia</option>
                                    <option value="newZealand">New Zealand</option>
                                    <option value="russia">Russia</option>
 
@@ -156,7 +156,7 @@ if($mysqli->connect_errno){
                                    <option value="asia">Asia</option>
                                    <option value="africa">Africa</option>
                                    <option value="india">India</option>
-                                   <option value="Australia">Australia</option>
+                                   <option value="australia">Australia</option>
                                    <option value="newZealand">New Zealand</option>
                                    <option value="russia">Russia</option>
 
@@ -190,36 +190,36 @@ if($mysqli->connect_errno){
 
                          <label>
                               Needed Occupation:
-                              <select name="needoccupation" required="">
+                              <select name="occupation" required="">
                                    <option value="">Select</option>
-                                   <option value="needdoctor">Doctor</option>
-                                   <option value="needteacher">Teacher</option>
-                                   <option value="needengineer">Engineer</option>
-                                   <option value="needother">Other</option>
+                                   <option value="doctor">Doctor</option>
+                                   <option value="teacher">Teacher</option>
+                                   <option value="engineer">Engineer</option>
+                                   <option value="other">Other</option>
                               </select>
                          </label>
                          </br>
 
                          <label>
                               Needed Season:
-                              <select name="needseason" required="">
+                              <select name="season" required="">
                                    <option value="">Select</option>
-                                   <option value="needwinter">Winter</option>
-                                   <option value="needspring">Spring</option>
-                                   <option value="needsummer">Summer</option>
-                                   <option value="needfall">Fall</option>
+                                   <option value="winter">Winter</option>
+                                   <option value="spring">Spring</option>
+                                   <option value="summer">Summer</option>
+                                   <option value="fall">Fall</option>
                               </select>
                          </label>
                          </br>
 
                          <label>
                               Needed Days:
-                              <select name="needdays" required="">
+                              <select name="days" required="">
                                    <option value="">Select</option>
-                                   <option value="needoneweek">0-7</option>
-                                   <option value="needtwoweek">8-14</option>
-                                   <option value="needthreeweek">15-21</option>
-                                   <option value="needmoreweek">22+</option>
+                                   <option value="oneweek">0-7</option>
+                                   <option value="twoweek">8-14</option>
+                                   <option value="threeweek">15-21</option>
+                                   <option value="moreweek">22+</option>
                               </select>
                          </label>
                          </br>
@@ -417,12 +417,12 @@ if(!($stmt = $mysqli->prepare("SELECT * FROM locations"))){
 if(!$stmt->execute()){
 	echo "Execute failed: "  . $mysqli->connect_errno . " " . $mysqli->connect_error;
 }
-if(!$stmt->bind_result($lid, $region, $country, $city, $cemail, $cphone, $needoccupation, $needseason, $needdays, $opdesc, $startDate, $endDate)){
+if(!$stmt->bind_result($lid, $region, $country, $city, $cemail, $cphone, $occupation, $season, $days, $opdesc, $startDate, $endDate)){
 	echo "Bind failed: "  . $mysqli->connect_errno . " " . $mysqli->connect_error;
 }
 while($stmt->fetch()){
  echo "<tr>\n<td>\n" . $lid . "\n</td>\n<td>\n" . $region . "\n</td>\n<td>\n". $country . "\n</td>\n<td>\n" . $city .  "\n</td>\n<td>\n". $cemail .  "\n</td>\n<td>\n".
- $cphone .  "\n</td>\n<td>\n". $needoccupation .  "\n</td>\n<td>\n". $needseason .  "\n</td>\n<td>\n".  $needdays . "\n</td>\n<td>\n".  $opdesc . "\n</td>\n<td>\n". 
+ $cphone .  "\n</td>\n<td>\n". $occupation .  "\n</td>\n<td>\n". $season .  "\n</td>\n<td>\n".  $days . "\n</td>\n<td>\n".  $opdesc . "\n</td>\n<td>\n". 
  $startDate . "\n</td>\n<td>\n".  $endDate . "\n</td>\n</tr>";
 }
 
