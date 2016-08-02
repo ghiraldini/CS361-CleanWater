@@ -83,10 +83,10 @@ if($mysqli->connect_errno){
                               Days:
                               <select name="days" required="">
                                    <option value="">Select</option>
-                                   <option value="0-7">0-7</option>
-                                   <option value="8-14">8-14</option>
-                                   <option value="15-21">15-21</option>
-                                   <option value="22+">22+</option>
+                                   <option value="oneweek">0-7</option>
+                                   <option value="twoweek">8-14</option>
+                                   <option value="threeweek">15-21</option>
+                                   <option value="moreweek">22+</option>
                               </select>
                          </label>
                          </br>
@@ -354,12 +354,12 @@ if(!($stmt = $mysqli->prepare("SELECT * FROM locations"))){
 if(!$stmt->execute()){
 	echo "Execute failed: "  . $mysqli->connect_errno . " " . $mysqli->connect_error;
 }
-if(!$stmt->bind_result($lid, $region, $country, $city, $cemail, $cphone, $needoccupation, $needseason, $needdays, $opdesc, $startDate, $endDate)){
+if(!$stmt->bind_result($lid, $region, $country, $city, $cemail, $cphone, $occupation, $season, $days, $opdesc, $startDate, $endDate)){
 	echo "Bind failed: "  . $mysqli->connect_errno . " " . $mysqli->connect_error;
 }
 while($stmt->fetch()){
  echo "<tr>\n<td>\n" . $lid . "\n</td>\n<td>\n" . $region . "\n</td>\n<td>\n". $country . "\n</td>\n<td>\n" . $city .  "\n</td>\n<td>\n". $cemail .  "\n</td>\n<td>\n".
- $cphone .  "\n</td>\n<td>\n". $needoccupation .  "\n</td>\n<td>\n". $needseason .  "\n</td>\n<td>\n".  $needdays . "\n</td>\n<td>\n".  $opdesc . "\n</td>\n<td>\n". 
+ $cphone .  "\n</td>\n<td>\n". $occupation .  "\n</td>\n<td>\n". $season .  "\n</td>\n<td>\n".  $days . "\n</td>\n<td>\n".  $opdesc . "\n</td>\n<td>\n". 
  $startDate . "\n</td>\n<td>\n".  $endDate . "\n</td>\n</tr>";
 }
 
