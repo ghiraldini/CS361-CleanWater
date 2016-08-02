@@ -408,22 +408,29 @@ $stmt->close();
                     <th>Coordinator Email</th>
                     <th>Coordinator Phone Number</th>
                     <th>Opportunity Description</th>
+		    <th>Volunteer</th>
                </tr>
                <!-- MySqli statements for filling table -->
-               <?php
-if(!($stmt = $mysqli->prepare("SELECT * FROM locations"))){
+             
+<?php
+if(!($stmt = $mysqli->prepare("
+SELECT locations.lid, locations.region, locations.country, locations.city, locations.cemail, locations.cphone, locations.opdesc, volunteers.email 
+FROM locations 
+INNER JOIN volunteers
+WHERE locations.need = volunteers.occupation
+AND volunteers.email = \"dave@moon.com\";
+"))){
 	echo "Prepare failed: "  . $stmt->errno . " " . $stmt->error;
 }
 if(!$stmt->execute()){
 	echo "Execute failed: "  . $mysqli->connect_errno . " " . $mysqli->connect_error;
 }
-if(!$stmt->bind_result($lid, $region, $country, $city, $cemail, $cphone, $occupation, $season, $days, $opdesc, $startDate, $endDate)){
+if(!$stmt->bind_result($lid, $region, $country, $city, $cemail, $cphone, $opdesc, $email)){
 	echo "Bind failed: "  . $mysqli->connect_errno . " " . $mysqli->connect_error;
 }
 while($stmt->fetch()){
  echo "<tr>\n<td>\n" . $lid . "\n</td>\n<td>\n" . $region . "\n</td>\n<td>\n". $country . "\n</td>\n<td>\n" . $city .  "\n</td>\n<td>\n". $cemail .  "\n</td>\n<td>\n".
- $cphone .  "\n</td>\n<td>\n". $occupation .  "\n</td>\n<td>\n". $season .  "\n</td>\n<td>\n".  $days . "\n</td>\n<td>\n".  $opdesc . "\n</td>\n<td>\n". 
- $startDate . "\n</td>\n<td>\n".  $endDate . "\n</td>\n</tr>";
+ $cphone .  "\n</td>\n<td>\n". $email .  "\n</td>\n</tr>";
 }
 
 $stmt->close();
