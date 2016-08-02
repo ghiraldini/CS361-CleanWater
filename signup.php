@@ -74,10 +74,10 @@
                 <div class="col-md-3">
                     <select class="form-control col-md-6" name="occupation" required="">
                         <option value="">Select</option>
-                        <option value="Doctor">Doctor</option>
-                        <option value="Teacher">Teacher</option>
-                        <option value="Engineer">Engineer</option>
-                        <option value="Other">Other</option>
+                        <option value="doctor">Doctor</option>
+                        <option value="teacher">Teacher</option>
+                        <option value="engineer">Engineer</option>
+                        <option value="other">Other</option>
                     </select>
                 </div>
             </div>
@@ -88,10 +88,10 @@
                 <div class="col-md-3">
                     <select class="form-control col-md-6" name="season" required="">
                         <option value="">Select</option>
-                        <option value="Winter">Winter</option>
-                        <option value="Spring">Spring</option>
-                        <option value="Summer">Summer</option>
-                        <option value="Fall">Fall</option>
+                        <option value="winter">Winter</option>
+                        <option value="spring">Spring</option>
+                        <option value="summer">Summer</option>
+                        <option value="fall">Fall</option>
                     </select>
                 </div>
 
@@ -100,10 +100,10 @@
                 <div class="col-md-3">
                     <select class="form-control col-md-6" name="days" required="">
                         <option value="">Select</option>
-                        <option value="0-7">0-7</option>
-                        <option value="8-14">8-14</option>
-                        <option value="15-21">15-21</option>
-                        <option value="22+">22+</option>
+                        <option value="oneweek">0-7</option>
+                        <option value="twoweek">8-14</option>
+                        <option value="threeweek">15-21</option>
+                        <option value="moreweek">22+</option>
                     </select>
                 </div>
             </div>
@@ -124,7 +124,7 @@
                         <option value="asia">Asia</option>
                         <option value="africa">Africa</option>
                         <option value="india">India</option>
-                        <option value="Australia">Australia</option>
+                        <option value="australia">Australia</option>
                         <option value="newZealand">New Zealand</option>
                         <option value="russia">Russia</option>
                     </select>

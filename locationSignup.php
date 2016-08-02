@@ -3,9 +3,9 @@
 ini_set('display_errors', 'On');
 
 //Connects to the database
-//$mysqli = new mysqli("oniddb.cws.oregonstate.edu","ghiraldj-db","v1bptepGowZ4t1OE","ghiraldj-db");
+$mysqli = new mysqli("oniddb.cws.oregonstate.edu","ghiraldj-db","v1bptepGowZ4t1OE","ghiraldj-db");
 //$mysqli = new mysqli("oniddb.cws.oregonstate.edu","thrashek-db","QybR0dsOjULZ4QtZ","thrashek-db");
-$mysqli = new mysqli("oniddb.cws.oregonstate.edu","moondav-db","BUyiIi84msF2NNtI","moondav-db");
+//$mysqli = new mysqli("oniddb.cws.oregonstate.edu","moondav-db","BUyiIi84msF2NNtI","moondav-db");
 
 if($mysqli->connect_errno){
     echo "Connection error " . $mysqli->connect_errno . " " . $mysqli->connect_error;
@@ -120,23 +120,23 @@ if($mysqli->connect_errno){
           <div class="form-group row">
             <label class="col-md-1">Needed Occupation:</label>
             <div class="col-md-3">
-              <select class="form-control col-md-6" name="needoccupation" required="">
+              <select class="form-control col-md-6" id="occupation" name="occupation" required="">
                 <option value="">Select</option>
-                <option value="needdoctor">Doctor</option>
-                <option value="needteacher">Teacher</option>
-                <option value="needengineer">Engineer</option>
-                <option value="needother">Other</option>
+                <option value="doctor">Doctor</option>
+                <option value="teacher">Teacher</option>
+                <option value="engineer">Engineer</option>
+                <option value="other">Other</option>
               </select>
             </div>
 
             <label class="col-md-1">Needed Season:</label>
             <div class="col-md-3">
-              <select class="form-control col-md-6" name="needseason" required="">
+              <select class="form-control col-md-6" name="season" id="season" required="">
                 <option value="">Select</option>
-                <option value="needwinter">Winter</option>
-                <option value="needspring">Spring</option>
-                <option value="needsummer">Summer</option>
-                <option value="needfall">Fall</option>
+                <option value="winter">Winter</option>
+                <option value="spring">Spring</option>
+                <option value="summer">Summer</option>
+                <option value="fall">Fall</option>
               </select>
             </div>
           </div>
@@ -146,12 +146,12 @@ if($mysqli->connect_errno){
           <div class="form-group row">
             <label class="col-md-1">Needed Days:</label>
             <div class="col-md-3">
-              <select class="form-control col-md-6" name="needdays" required="">
+              <select class="form-control col-md-6" name="days" id="days" required="">
                 <option value="">Select</option>
-                <option value="needoneweek">0-7</option>
-                <option value="needtwoweek">8-14</option>
-                <option value="needthreeweek">15-21</option>
-                <option value="needmoreweek">22+</option>
+                <option value="oneweek">0-7</option>
+                <option value="twoweek">8-14</option>
+                <option value="threeweek">15-21</option>
+                <option value="moreweek">22+</option>
               </select>
             </div>
           </div>
