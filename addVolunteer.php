@@ -21,7 +21,7 @@ if(!$stmt->execute()){
 	echo "Execute failed: "  . $stmt->errno . " " . $stmt->error;
 } else {
 	//header("Refresh: 0, url=cleanWaterMain.php");
-	header("Refresh: 0, url=cleanWaterMain.php");
+	header("Refresh: 0, url=home.html");
 //	echo "Added " . $stmt->affected_rows . " rows to volunteers.";
 }
 ?>

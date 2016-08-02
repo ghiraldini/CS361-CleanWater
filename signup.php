@@ -1,13 +1,3 @@
-<?php
-//Turn on error reporting
-ini_set('display_errors', 'On');
-//Connects to the database
-$mysqli = new mysqli("oniddb.cws.oregonstate.edu","ghiraldj-db","v1bptepGowZ4t1OE","ghiraldj-db");
-//$mysqli = new mysqli("oniddb.cws.oregonstate.edu","thrashek-db","QybR0dsOjULZ4QtZ","thrashek-db");
-if($mysqli->connect_errno){
-    echo "Connection error " . $mysqli->connect_errno . " " . $mysqli->connect_error;
-    }
-?>
 
 
 <script>
@@ -54,7 +44,7 @@ if($mysqli->connect_errno){
   		</div>
   	</nav>
 
-<!--Add action="addVolunteer.php"-->
+<!--Form to submit to: addVolunteer.php and add a volunteer to the database-->
     <div class="col-md-12">
          <h3 class="header-text">New User Profile</h3>
         <form class="form-group form-style img-rounded" role="form" name="volunteerForm" onsubmit="return compare()" method="post" action="addVolunteer.php">
