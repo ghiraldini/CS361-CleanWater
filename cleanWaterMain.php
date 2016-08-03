@@ -418,7 +418,10 @@ SELECT locations.lid, locations.region, locations.country, locations.city, locat
 FROM locations
 INNER JOIN volunteers
 WHERE (locations.need = volunteers.occupation)
-OR (locations.region = volunteers.region);
+OR (locations.region = volunteers.region)
+OR (volunteers.startDate < locations.endDate AND volunteers.endDate > locations.startDate)
+OR (volunteers.startDate < locations.endDate AND volunteers.endDate < locations.endDate)
+OR (volunteers.startDate > locations.startDate AND volunteers.startDate < volunteers.endDate);
 "))){
 	echo "Prepare failed: "  . $stmt->errno . " " . $stmt->error;
 }
@@ -438,10 +441,8 @@ $stmt->close();
           </table>
 
 
-					<!-- // OR (volunteers.startDate < locations.endDate AND volunteers.endDate > locations.startDate)
-					// OR (volunteers.startDate < locations.endDate AND volunteers.endDate < locations.endDate)
-					// OR (volunteers.startDate > locations.startDate AND volunteers.startDate < volunteers.endDate)
-				SORT BY locations.lid ASC-->
+
+				<!-- SORT BY locations.lid ASC -->
 
 <!-- MATCH FILTER BY OCCUPATION -->
 
