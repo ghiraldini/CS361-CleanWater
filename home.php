@@ -158,7 +158,7 @@ function showOccupation() {
 
   <!-- MATCH FILTER BY OCCUPATION -->
 
-  <table class="table" id="matches_occupation" align="center">
+  <table class="table" id="matches_occupation" align="center" style.display="none">
     <div class="container-fluid text-center">
       <h2> Matches by occupation</h2>
     </div>
