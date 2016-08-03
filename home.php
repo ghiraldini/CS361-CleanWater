@@ -79,7 +79,7 @@ if($mysqli->connect_errno){
   <nav class="navbar navbar-default" role="navigation">
     <ul class="nav navbar-nav pull-left">
       <li><a href="">Filters:</a></li>
-      <li><a id="occupation" onclick="showOccupation" href="#">Occupation</a></li>
+      <li><a href="" id="occupation">Occupation</a></li>
       <li><a href="" id="region">Region</a></li>
       <li><a href="" id="season">Season</a></li>
       <li><a href="" id="dateRange">Date Range</a></li>
@@ -303,7 +303,7 @@ if($mysqli->connect_errno){
 
 
 
-<script type="text/javascript">
+<script>
 // object.addEventListener("click", myScript);
 document.getElementById("matches").addEventListener("click", showOccupation);
 
