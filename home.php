@@ -143,7 +143,7 @@ if($mysqli->connect_errno){
       $stmt->close();
       ?>
     </table>
-  </div>
+
 
   <!-- MATCH FILTER BY OCCUPATION -->
 
@@ -187,7 +187,7 @@ if($mysqli->connect_errno){
     $stmt->close();
     ?>
   </table>
-</div>
+
 
 
 
@@ -234,7 +234,7 @@ if($mysqli->connect_errno){
     $stmt->close();
     ?>
   </table>
-</div>
+
 
 
 
@@ -286,7 +286,7 @@ if($mysqli->connect_errno){
     $stmt->close();
     ?>
   </table>
-</div>
+
 
 
 
