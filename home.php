@@ -99,7 +99,7 @@ if($mysqli->connect_errno){
 
       <!-- MATCH FILTERS -->
 
-    <table class="table" id="matches" align="center">
+    <table class="table" id="matches" align="center" style.display="none">
       <div class="container-fluid text-center">
         <h2> All matches</h2>
       </div>
@@ -194,7 +194,7 @@ if($mysqli->connect_errno){
 
   <!-- MATCHES FILTER BY REGION -->
 
-  <table class="table" id="matches_region" align="center">
+  <table class="table" id="matches_region" align="center" style.display="none">
     <div class="container-fluid text-center">
       <h2> Matches by region</h2>
     </div>
@@ -241,7 +241,7 @@ if($mysqli->connect_errno){
   <!-- MATCHES FILTER BY TIME -->
 
 
-  <table class="table" id="matches_time" align="center">
+  <table class="table" id="matches_time" align="center" style.display="none">
     <div class="container-fluid text-center">
       <h2> Matches by time</h2>
     </div>
