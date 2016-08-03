@@ -1,17 +1,22 @@
 <?php
 ini_set('display_errors', 'On');
+<<<<<<< HEAD
 //$mysqli = new mysqli("oniddb.cws.oregonstate.edu","ghiraldj-db","v1bptepGowZ4t1OE","ghiraldj-db");
 //$mysqli = new mysqli("oniddb.cws.oregonstate.edu","thrashek-db","QybR0dsOjULZ4QtZ","thrashek-db");
 $mysqli = new mysqli("oniddb.cws.oregonstate.edu","moondav-db","BUyiIi84msF2NNtI","moondav-db");
 
+=======
+$mysqli = new mysqli("oniddb.cws.oregonstate.edu","ghiraldj-db","v1bptepGowZ4t1OE","ghiraldj-db");
+//$mysqli = new mysqli("oniddb.cws.oregonstate.edu","thrashek-db","QybR0dsOjULZ4QtZ","thrashek-db");
+>>>>>>> d3f31e9a892c15ed47f0a818ea4a57ba8ef75e3c
 
 if(!$mysqli || $mysqli->connect_errno){
-	echo "Connection error " . $mysqli->connect_errno . " " . 
+	echo "Connection error " . $mysqli->connect_errno . " " .
      $mysqli->connect_error;
 }
 
 // Filter Results from Database
-if(!($stmt = $mysqli->prepare("SELECT t.name, c.fullName FROM title_tbl t 
+if(!($stmt = $mysqli->prepare("SELECT t.name, c.fullName FROM title_tbl t
     INNER JOIN cat_tbl c ON t.catID = c.id
     WHERE c.id =?"))){
     echo "Prepare failed: "  . $stmt->errno . " " . $stmt->error;
