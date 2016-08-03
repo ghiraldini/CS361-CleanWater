@@ -417,14 +417,11 @@ if(!($stmt = $mysqli->prepare("
 SELECT locations.lid, locations.region, locations.country, locations.city, locations.cemail, locations.cphone, locations.opdesc, volunteers.email
 FROM locations
 INNER JOIN volunteers
-WHERE locations.need = volunteers.occupation
-OR locations.region = volunteers.region
-OR volunteers.startDate < locations.endDate
-AND volunteers.endDate > locations.startDate
-OR volunteers.startDate < locations.endDate
-AND volunteers.endDate < locations.endDate
-OR volunteers.startDate > locations.startDate
-AND volunteers.startDate < volunteers.endDate
+WHERE (locations.need = volunteers.occupation)
+OR (locations.region = volunteers.region)
+OR (volunteers.startDate < locations.endDate AND volunteers.endDate > locations.startDate)
+OR (volunteers.startDate < locations.endDate AND volunteers.endDate < locations.endDate)
+OR (volunteers.startDate > locations.startDate AND volunteers.startDate < volunteers.endDate)
 SORT BY locations.lid ASC;
 "))){
 	echo "Prepare failed: "  . $stmt->errno . " " . $stmt->error;
