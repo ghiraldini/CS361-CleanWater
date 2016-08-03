@@ -1,15 +1,15 @@
 <?php
 ini_set('display_errors', 'On');
-//$mysqli = new mysqli("oniddb.cws.oregonstate.edu","ghiraldj-db","v1bptepGowZ4t1OE","ghiraldj-db");
-$mysqli = new mysqli("oniddb.cws.oregonstate.edu","thrashek-db","QybR0dsOjULZ4QtZ","thrashek-db");
+$mysqli = new mysqli("oniddb.cws.oregonstate.edu","ghiraldj-db","v1bptepGowZ4t1OE","ghiraldj-db");
+//$mysqli = new mysqli("oniddb.cws.oregonstate.edu","thrashek-db","QybR0dsOjULZ4QtZ","thrashek-db");
 
 if(!$mysqli || $mysqli->connect_errno){
-	echo "Connection error " . $mysqli->connect_errno . " " . 
+	echo "Connection error " . $mysqli->connect_errno . " " .
      $mysqli->connect_error;
 }
 
 // Filter Results from Database
-if(!($stmt = $mysqli->prepare("SELECT t.name, c.fullName FROM title_tbl t 
+if(!($stmt = $mysqli->prepare("SELECT t.name, c.fullName FROM title_tbl t
     INNER JOIN cat_tbl c ON t.catID = c.id
     WHERE c.id =?"))){
     echo "Prepare failed: "  . $stmt->errno . " " . $stmt->error;

@@ -3,9 +3,9 @@
 //Turn on error reporting
 ini_set('display_errors', 'On');
 //Connects to the database
-//$mysqli = new mysqli("oniddb.cws.oregonstate.edu","ghiraldj-db","v1bptepGowZ4t1OE","ghiraldj-db");
+$mysqli = new mysqli("oniddb.cws.oregonstate.edu","ghiraldj-db","v1bptepGowZ4t1OE","ghiraldj-db");
 //$mysqli = new mysqli("oniddb.cws.oregonstate.edu","thrashek-db","QybR0dsOjULZ4QtZ","thrashek-db");
-$mysqli = new mysqli("oniddb.cws.oregonstate.edu","moondav-db","BUyiIi84msF2NNtI","moondav-db");
+//$mysqli = new mysqli("oniddb.cws.oregonstate.edu","moondav-db","BUyiIi84msF2NNtI","moondav-db");
 
 
 if($mysqli->connect_errno){
@@ -44,7 +44,7 @@ if($mysqli->connect_errno){
   			</ul>
   		</div>
   	</nav>
-    
+
 
     <div class="container-fluid">
       <div class="row">
@@ -68,7 +68,7 @@ if($mysqli->connect_errno){
                       echo "<option value=''>" . $email . "</option>\n";
                     }
                     $stmt->close();
-                ?>  
+                ?>
           </select>
         </div>
       </div>
@@ -121,8 +121,8 @@ if($mysqli->connect_errno){
           while($stmt->fetch()){
             $newStartDate = date( "Y-m-d", strtotime( $startDate ) );
             $newEndDate = date( "Y-m-d", strtotime( $endDate ) );
-            echo "<tr>\n<td>\n" . $vid . "\n</td>\n<td>\n" . $first_name . "\n</td>\n<td>\n" . $last_name . "\n</td>\n<td>\n" . $email . "\n</td>\n<td>\n" . 
-            $occupation . "\n</td>\n<td>\n" . $season . "\n</td>\n<td>\n" . 
+            echo "<tr>\n<td>\n" . $vid . "\n</td>\n<td>\n" . $first_name . "\n</td>\n<td>\n" . $last_name . "\n</td>\n<td>\n" . $email . "\n</td>\n<td>\n" .
+            $occupation . "\n</td>\n<td>\n" . $season . "\n</td>\n<td>\n" .
             $days . "\n</td>\n<td>\n" . $region . "\n</td>\n<td>\n" . $newStartDate . "\n</td>\n<td>\n" . $newEndDate . "\n</td>\n</tr>";
           }
           $stmt->close();
@@ -130,7 +130,7 @@ if($mysqli->connect_errno){
       </table>
     </div>
 
-    
+
     <a href="cleanWaterMain.php">Display the current database</a>
 
     <script src="home.js"></script>
