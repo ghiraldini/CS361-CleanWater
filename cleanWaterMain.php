@@ -421,10 +421,8 @@ INNER JOIN volunteers
 ORDER BY locations.lid ASC;
 =======
 WHERE locations.need = volunteers.occupation
-OR
-WHERE locations.region = volunteers.region
-OR
-WHERE volunteers.startDate < locations.endDate
+OR locations.region = volunteers.region
+OR volunteers.startDate < locations.endDate
 AND volunteers.endDate > locations.startDate
 OR volunteers.startDate < locations.endDate
 AND volunteers.endDate < locations.endDate
