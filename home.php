@@ -303,7 +303,7 @@ if($mysqli->connect_errno){
 
 
 
-<script>
+<script type="text/javascript">
 function showOccupation() {
   document.getElementById("matches").style.display="none";
   document.getElementById("matches_region").style.display="none";
