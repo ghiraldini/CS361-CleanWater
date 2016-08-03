@@ -94,13 +94,14 @@ if($mysqli->connect_errno){
 
 
 
-    
+
 
 
     <!-- ------- ------- ------- ------- ------- ------- ------- ------- ------- ------- ------- ------- ------- ----- -->
     <!--//      ----------------------------------MATCHING LOCATIONS ------------------------------------------//        ----->
     <!-- ------- ------- ------- ------- ------- ------- ------- ------- ------- ------- ------- ------- ------- ----- -->
 
+      <!-- MATCH FILTERS -->
 
     <table class="table" id="matches" align="center">
       <div class="container-fluid text-center">
@@ -148,15 +149,12 @@ if($mysqli->connect_errno){
     </table>
   </div>
 
-
-
-
-
   <!-- MATCH FILTER BY OCCUPATION -->
 
-  <h2> Matches by Occupation</h2>
-
-  <table align="center" id="matches_occupation">
+  <table class="table" id="matches_occupation" align="center">
+    <div class="container-fluid text-center">
+      <h2> MATCHES by Occupation</h2>
+    </div>
     <tr>
       <th>ID </th>
       <th>Region </th>
@@ -193,15 +191,17 @@ if($mysqli->connect_errno){
     $stmt->close();
     ?>
   </table>
+</div>
 
 
 
 
   <!-- MATCHES FILTER BY REGION -->
 
-  <h2> Matches by Region</h2>
-
-  <table align="center" id="matches_region">
+  <table class="table" id="matches_region" align="center">
+    <div class="container-fluid text-center">
+      <h2> MATCHES by Region</h2>
+    </div>
     <tr>
       <th>ID </th>
       <th>Region </th>
@@ -238,15 +238,17 @@ if($mysqli->connect_errno){
     $stmt->close();
     ?>
   </table>
+</div>
 
 
 
   <!-- MATCHES FILTER BY TIME -->
 
 
-  <h2> Matches by Time</h2>
-
-  <table align="center" id="matches_time">
+  <table class="table" id="matches_time" align="center">
+    <div class="container-fluid text-center">
+      <h2> MATCHES by Time</h2>
+    </div>
     <tr>
       <th>ID </th>
       <th>Region </th>
@@ -288,16 +290,7 @@ if($mysqli->connect_errno){
     $stmt->close();
     ?>
   </table>
-
-
-
-
-
-
-
-
-
-
+</div>
 
 
 
