@@ -434,7 +434,7 @@ if(!$stmt->bind_result($lid, $region, $country, $city, $cemail, $cphone, $opdesc
 }
 while($stmt->fetch()){
  echo "<tr>\n<td>\n" . $lid . "\n</td>\n<td>\n" . $region . "\n</td>\n<td>\n". $country . "\n</td>\n<td>\n" . $city .  "\n</td>\n<td>\n". $cemail .  "\n</td>\n<td>\n".
- $cphone .  "\n</td>\n<td>\n". $email .  "\n</td>\n</tr>";
+ $cphone .  "\n</td>\n<td>\n". $opdesc . "\n</td>\n<td>\n" . $email .  "\n</td>\n</tr>";
 }
 
 $stmt->close();
@@ -480,7 +480,7 @@ $stmt->close();
 	}
 	while($stmt->fetch()){
 		echo "<tr>\n<td>\n" . $lid . "\n</td>\n<td>\n" . $region . "\n</td>\n<td>\n". $country . "\n</td>\n<td>\n" . $city .  "\n</td>\n<td>\n". $cemail .  "\n</td>\n<td>\n".
-		$cphone .  "\n</td>\n<td>\n". $email .  "\n</td>\n</tr>";
+		$cphone .  "\n</td>\n<td>\n". $opdesc . "\n</td>\n<td>\n" . $email .  "\n</td>\n</tr>";
 	}
 
 	$stmt->close();
@@ -525,7 +525,7 @@ $stmt->close();
 	}
 	while($stmt->fetch()){
 		echo "<tr>\n<td>\n" . $lid . "\n</td>\n<td>\n" . $region . "\n</td>\n<td>\n". $country . "\n</td>\n<td>\n" . $city .  "\n</td>\n<td>\n". $cemail .  "\n</td>\n<td>\n".
-		$cphone .  "\n</td>\n<td>\n". $email .  "\n</td>\n</tr>";
+		$cphone .  "\n</td>\n<td>\n". $opdesc . "\n</td>\n<td>\n" . $email .  "\n</td>\n</tr>";
 	}
 
 	$stmt->close();
@@ -575,7 +575,7 @@ $stmt->close();
 	}
 	while($stmt->fetch()){
 		echo "<tr>\n<td>\n" . $lid . "\n</td>\n<td>\n" . $region . "\n</td>\n<td>\n". $country . "\n</td>\n<td>\n" . $city .  "\n</td>\n<td>\n". $cemail .  "\n</td>\n<td>\n".
-		$cphone .  "\n</td>\n<td>\n". $email .  "\n</td>\n</tr>";
+		$cphone .  "\n</td>\n<td>\n" . $opdesc . "\n</td>\n<td>\n" .  $email .  "\n</td>\n</tr>";
 	}
 
 	$stmt->close();
