@@ -13,15 +13,6 @@ if($mysqli->connect_errno){
 }
 ?>
 
-<script>
-function showOccupation() {
-    if (document.getElementById("matches_occupation").style.display == "table" ) {
-          document.getElementById("matches_occupation").style.display="none";
-      } else {
-         document.getElementById("matches_occupation").style.display="table";
-}
-</script>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -309,3 +300,18 @@ function showOccupation() {
   <script src="bootstrap-3.3.7-dist/js/bootstrap.js"></script>
 </body>
 </html>
+
+
+
+<script>
+function showOccupation() {
+  document.getElementById("matches").style.display="none";
+  document.getElementById("matches_region").style.display="none";
+  document.getElementById("matches_time").style.display="none";
+
+    if (document.getElementById("matches_occupation").style.display == "table" ) {
+          document.getElementById("matches_occupation").style.display="none";
+      } else {
+         document.getElementById("matches_occupation").style.display="table";
+}
+</script>
