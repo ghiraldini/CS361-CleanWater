@@ -99,7 +99,7 @@ if($mysqli->connect_errno){
 
       <!-- MATCH FILTERS -->
 
-    <table class="table" id="matches" align="center" style.display="none">
+    <table class="table" id="matches" align="center" style="display:none">
       <div class="container-fluid text-center">
         <h2> All matches</h2>
       </div>
