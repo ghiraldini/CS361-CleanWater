@@ -304,6 +304,9 @@ if($mysqli->connect_errno){
 
 
 <script type="text/javascript">
+// object.addEventListener("click", myScript);
+document.getElementById("matches").addEventListener("click", showOccupation);
+
 function showOccupation() {
   document.getElementById("matches").style.display="none";
   document.getElementById("matches_region").style.display="none";
