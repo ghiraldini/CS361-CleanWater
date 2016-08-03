@@ -13,6 +13,13 @@ if($mysqli->connect_errno){
 }
 ?>
 
+<script>
+function showOccupation() {
+    var lTable = document.getElementById("matches_occupation");
+    lTable.style.display = (lTable.style.display == "table") ? "none" : "table";
+}
+</script>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -74,10 +81,12 @@ if($mysqli->connect_errno){
     </div>
   </div>
 
+<!-- <a id="loginLink" onclick="toggleTable();" href="#">Login</a> -->
+
   <nav class="navbar navbar-default" role="navigation">
     <ul class="nav navbar-nav pull-left">
       <li><a href="">Filters:</a></li>
-      <li><a href="" id="occupation">Occupation</a></li>
+      <li><a href="" id="occupation" onclick="showOccupation();">Occupation</a></li>
       <li><a href="" id="region">Region</a></li>
       <li><a href="" id="season">Season</a></li>
       <li><a href="" id="dateRange">Date Range</a></li>
