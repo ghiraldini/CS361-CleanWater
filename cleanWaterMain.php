@@ -417,7 +417,7 @@ if(!($stmt = $mysqli->prepare("
 SELECT locations.lid, locations.region, locations.country, locations.city, locations.cemail, locations.cphone, locations.opdesc, volunteers.email
 FROM locations
 INNER JOIN volunteers
-SORT BY locations.lid ASC;
+ORDER BY locations.lid ASC;
 "))){
 	echo "Prepare failed: "  . $stmt->errno . " " . $stmt->error;
 }
