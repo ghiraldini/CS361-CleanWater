@@ -90,7 +90,7 @@ function showOccupation() {
   <nav class="navbar navbar-default" role="navigation">
     <ul class="nav navbar-nav pull-left">
       <li><a href="">Filters:</a></li>
-      <li><a href="" id="occupation" onclick="showOccupation();">Occupation</a></li>
+      <li><a id="occupation" onclick="showOccupation();" href="#">Occupation</a></li>
       <li><a href="" id="region">Region</a></li>
       <li><a href="" id="season">Season</a></li>
       <li><a href="" id="dateRange">Date Range</a></li>
