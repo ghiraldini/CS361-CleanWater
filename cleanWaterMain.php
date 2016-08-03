@@ -421,8 +421,8 @@ WHERE (locations.need = volunteers.occupation)
 OR (locations.region = volunteers.region)
 OR (volunteers.startDate < locations.endDate AND volunteers.endDate > locations.startDate)
 OR (volunteers.startDate < locations.endDate AND volunteers.endDate < locations.endDate)
-OR (volunteers.startDate > locations.startDate AND volunteers.startDate < volunteers.endDate);
-"))){
+OR (volunteers.startDate > locations.startDate AND volunteers.startDate < volunteers.endDate)
+ORDER BY locations.lid ASC;"))){
 	echo "Prepare failed: "  . $stmt->errno . " " . $stmt->error;
 }
 if(!$stmt->execute()){
@@ -442,7 +442,7 @@ $stmt->close();
 
 
 
-				<!-- SORT BY locations.lid ASC -->
+
 
 <!-- MATCH FILTER BY OCCUPATION -->
 
