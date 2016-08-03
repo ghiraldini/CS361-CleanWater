@@ -312,9 +312,10 @@ function showOccupation() {
   document.getElementById("matches_region").style.display="none";
   document.getElementById("matches_time").style.display="none";
 
-    if (document.getElementById("matches_occupation").style.display == "table" ) {
-          document.getElementById("matches_occupation").style.display="none";
-      } else {
-         document.getElementById("matches_occupation").style.display="table";
+  if (document.getElementById("matches_occupation").style.display == "table" ) {
+    document.getElementById("matches_occupation").style.display="none";
+  } else {
+    document.getElementById("matches_occupation").style.display="table";
+  }
 }
 </script>
