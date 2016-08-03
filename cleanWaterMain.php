@@ -418,10 +418,8 @@ SELECT locations.lid, locations.region, locations.country, locations.city, locat
 FROM locations
 INNER JOIN volunteers
 WHERE locations.need = volunteers.occupation
-OR
-WHERE locations.region = volunteers.region
-OR
-WHERE volunteers.startDate < locations.endDate
+OR locations.region = volunteers.region
+OR volunteers.startDate < locations.endDate
 AND volunteers.endDate > locations.startDate
 OR volunteers.startDate < locations.endDate
 AND volunteers.endDate < locations.endDate
