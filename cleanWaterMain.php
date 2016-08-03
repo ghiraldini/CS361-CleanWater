@@ -402,7 +402,8 @@ function compare() {
 
           <table align="center" id="matches">
                <tr>
-                    <th>Region </th>
+								 		<th>ID </th>
+										<th>Region </th>
                     <th>Country</th>
                     <th>City</th>
                     <th>Coordinator Email</th>
@@ -450,6 +451,7 @@ $stmt->close();
 
 <table align="center" id="matches_occupation">
 	<tr>
+		<th>ID </th>
 		<th>Region </th>
 		<th>Country</th>
 		<th>City</th>
@@ -494,6 +496,7 @@ $stmt->close();
 
 <table align="center" id="matches_region">
 	<tr>
+		<th>ID </th>
 		<th>Region </th>
 		<th>Country</th>
 		<th>City</th>
@@ -538,6 +541,7 @@ $stmt->close();
 
 <table align="center" id="matches_time">
 	<tr>
+		<th>ID </th>
 		<th>Region </th>
 		<th>Country</th>
 		<th>City</th>
