@@ -15,8 +15,6 @@ if($mysqli->connect_errno){
 
 <script>
 function showOccupation() {
-    // var lTable = document.getElementById("matches_occupation");
-    // lTable.style.display = (lTable.style.display == "table") ? "none" : "table";
     if (document.getElementById("matches_occupation").style.display == "table" ) {
           document.getElementById("matches_occupation").style.display="none";
       } else {
