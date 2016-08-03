@@ -98,8 +98,8 @@ if($mysqli->connect_errno){
     <!-- ------- ------- ------- ------- ------- ------- ------- ------- ------- ------- ------- ------- ------- ----- -->
 
       <!-- MATCH FILTERS -->
-
-    <table class="table" id="matches" align="center" style="display:none">
+    <div class="container-fluid text-center" id="all_matches_div" style="display:none">
+    <table class="table" id="matches" align="center">
       <div class="container-fluid text-center">
         <h2> All matches</h2>
       </div>
@@ -143,11 +143,12 @@ if($mysqli->connect_errno){
       $stmt->close();
       ?>
     </table>
+  </div>
 
 
   <!-- MATCH FILTER BY OCCUPATION -->
-
-  <table class="table" id="matches_occupation" align="center" style.display="none">
+<div class="container-fluid text-center" id="occupation_matches_div" style="display:none">
+  <table class="table" id="matches_occupation" align="center">
     <div class="container-fluid text-center">
       <h2> Matches by occupation</h2>
     </div>
@@ -187,14 +188,14 @@ if($mysqli->connect_errno){
     $stmt->close();
     ?>
   </table>
-
+</div>
 
 
 
 
   <!-- MATCHES FILTER BY REGION -->
-
-  <table class="table" id="matches_region" align="center" style.display="none">
+<div class="container-fluid text-center" id="region_matches_div" style="display:none">
+  <table class="table" id="matches_region" align="center">
     <div class="container-fluid text-center">
       <h2> Matches by region</h2>
     </div>
@@ -234,14 +235,14 @@ if($mysqli->connect_errno){
     $stmt->close();
     ?>
   </table>
-
+</div>
 
 
 
   <!-- MATCHES FILTER BY TIME -->
 
-
-  <table class="table" id="matches_time" align="center" style.display="none">
+<div class="container-fluid text-center" id="time_matches_div" style="display:none">
+  <table class="table" id="matches_time" align="center">
     <div class="container-fluid text-center">
       <h2> Matches by time</h2>
     </div>
@@ -286,7 +287,7 @@ if($mysqli->connect_errno){
     $stmt->close();
     ?>
   </table>
-
+</div>
 
 
 
@@ -308,14 +309,14 @@ if($mysqli->connect_errno){
 document.getElementById("matches").addEventListener("click", showOccupation);
 
 function showOccupation() {
-  document.getElementById("matches").style.display="none";
-  document.getElementById("matches_region").style.display="none";
-  document.getElementById("matches_time").style.display="none";
+  document.getElementById("all_matches_div").style.display="none";
+  document.getElementById("region_matches_div").style.display="none";
+  document.getElementById("time_matches_div").style.display="none";
 
-  if (document.getElementById("matches_occupation").style.display == "table" ) {
-    document.getElementById("matches_occupation").style.display="none";
+  if (document.getElementById("occupation_matches_div").style.display == "table" ) {
+    document.getElementById("occupation_matches_div").style.display="none";
   } else {
-    document.getElementById("matches_occupation").style.display="table";
+    document.getElementById("occupation_matches_div").style.display="table";
   }
 }
 </script>
