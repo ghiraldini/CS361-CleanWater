@@ -465,7 +465,8 @@ $stmt->close();
 	SELECT locations.lid, locations.region, locations.country, locations.city, locations.cemail, locations.cphone, locations.opdesc, volunteers.email
 	FROM locations
 	INNER JOIN volunteers
-	WHERE locations.need = volunteers.occupation;
+	WHERE locations.need = volunteers.occupation
+	ORDER BY locations.lid ASC;
 	"))){
 		echo "Prepare failed: "  . $stmt->errno . " " . $stmt->error;
 	}
@@ -508,7 +509,8 @@ $stmt->close();
 	SELECT locations.lid, locations.region, locations.country, locations.city, locations.cemail, locations.cphone, locations.opdesc, volunteers.email
 	FROM locations
 	INNER JOIN volunteers
-	WHERE locations.region = volunteers.region;
+	WHERE locations.region = volunteers.region
+	ORDER BY locations.lid ASC;
 	"))){
 		echo "Prepare failed: "  . $stmt->errno . " " . $stmt->error;
 	}
@@ -556,7 +558,8 @@ $stmt->close();
 	OR volunteers.startDate < locations.endDate
 	AND volunteers.endDate < locations.endDate
 	OR volunteers.startDate > locations.startDate
-	AND volunteers.startDate < volunteers.endDate;
+	AND volunteers.startDate < volunteers.endDate
+	ORDER BY locations.lid ASC;
 	"))){
 		echo "Prepare failed: "  . $stmt->errno . " " . $stmt->error;
 	}
