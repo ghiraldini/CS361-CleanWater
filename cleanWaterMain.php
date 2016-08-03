@@ -459,14 +459,13 @@ $stmt->close();
 		<th>Volunteer</th>
 	</tr>
 	<!-- MySqli statements for filling table -->
-
+<!-- AND volunteers.email = \"dave@moon.com\"; -->
 	<?php
 	if(!($stmt = $mysqli->prepare("
 	SELECT locations.lid, locations.region, locations.country, locations.city, locations.cemail, locations.cphone, locations.opdesc, volunteers.email
 	FROM locations
 	INNER JOIN volunteers
-	WHERE locations.need = volunteers.occupation
-	AND volunteers.email = \"dave@moon.com\";
+	WHERE locations.need = volunteers.occupation;
 	"))){
 		echo "Prepare failed: "  . $stmt->errno . " " . $stmt->error;
 	}
@@ -503,14 +502,13 @@ $stmt->close();
 		<th>Volunteer</th>
 	</tr>
 	<!-- MySqli statements for filling table -->
-
+<!-- AND volunteers.email = \"dave@moon.com\" -->
 	<?php
 	if(!($stmt = $mysqli->prepare("
 	SELECT locations.lid, locations.region, locations.country, locations.city, locations.cemail, locations.cphone, locations.opdesc, volunteers.email
 	FROM locations
 	INNER JOIN volunteers
-	WHERE locations.region = volunteers.region
-	AND volunteers.email = \"dave@moon.com\";
+	WHERE locations.region = volunteers.region;
 	"))){
 		echo "Prepare failed: "  . $stmt->errno . " " . $stmt->error;
 	}
@@ -547,7 +545,7 @@ $stmt->close();
 		<th>Volunteer</th>
 	</tr>
 	<!-- MySqli statements for filling table -->
-
+<!-- AND volunteers.email = \"dave@moon.com\" -->
 	<?php
 	if(!($stmt = $mysqli->prepare("
 	SELECT locations.lid, locations.region, locations.country, locations.city, locations.cemail, locations.cphone, locations.opdesc, volunteers.email
@@ -558,8 +556,7 @@ $stmt->close();
 	OR volunteers.startDate < locations.endDate
 	AND volunteers.endDate < locations.endDate
 	OR volunteers.startDate > locations.startDate
-	AND volunteers.startDate < volunteers.endDate
-	AND volunteers.email = \"dave@moon.com\";
+	AND volunteers.startDate < volunteers.endDate;
 	"))){
 		echo "Prepare failed: "  . $stmt->errno . " " . $stmt->error;
 	}
