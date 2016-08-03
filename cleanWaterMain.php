@@ -231,7 +231,7 @@ function compare() {
 <label>
 	Opportunity Description (Max 255 characters):
 	<br>
-	<input type="textbox" name="opdesc" style="height: 100px; width: 400px" maxlength="255">
+	<input type="textbox" name="opdesc" id="opdesc" style="height: 100px; width: 400px" maxlength="255">
 	<br>
 
 </label>
