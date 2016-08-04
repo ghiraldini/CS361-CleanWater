@@ -8,7 +8,7 @@ if(!($stmt = $mysqli->prepare("SELECT locations.lid, locations.region, locations
 FROM locations
 INNER JOIN volunteers
 WHERE locations.need = volunteers.occupation
-AND volunteers.email = " . $_POST['email'];))){
+AND volunteers.email = " . $_POST['email']))){
   echo "Prepare failed: "  . $stmt->errno . " " . $stmt->error;
 }
 if(!$stmt->execute()){
