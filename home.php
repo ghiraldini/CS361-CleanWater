@@ -73,7 +73,8 @@ if($mysqli->connect_errno){
       </div>
     </div>
   </div>
-
+  
+  <script>var p1 = document.getElementById("email").value;</script>
   <!-- <a id="loginLink" onclick="toggleTable();" href="#">Login</a> -->
 
   <nav class="navbar navbar-default" role="navigation">
@@ -121,7 +122,7 @@ if($mysqli->connect_errno){
     OR (locations.region = volunteers.region)
     OR (volunteers.startDate < locations.endDate AND volunteers.endDate > locations.startDate)
     OR (volunteers.startDate < locations.endDate AND volunteers.endDate < locations.endDate)
-    OR (volunteers.startDate > locations.startDate AND volunteers.startDate < volunteers.endDate)  
+    OR (volunteers.startDate > locations.startDate AND volunteers.startDate < volunteers.endDate)
     ORDER BY locations.lid ASC;"))){
       echo "Prepare failed: "  . $stmt->errno . " " . $stmt->error;
     }
@@ -345,7 +346,6 @@ if($mysqli->connect_errno){
 
 
 <script>
-var p1 = document.getElementById("email").value;
 document.getElementById("occupation").addEventListener("click", showOccupation);
 document.getElementById("region").addEventListener("click", showRegion);
 document.getElementById("dateRange").addEventListener("click", showTime);
