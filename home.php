@@ -52,7 +52,7 @@ if($mysqli->connect_errno){
         <h4>Current User Email:</h4>
       </div>
       <div class="col-md-4">
-        <select class="col-md-4 form-control" id="email" name="email">
+        <select class="col-md-4 form-control" id="email" name="email" action="populate_tables.php">
           <option class="form-control" value="">Select Current User Email</option>
           <?php
           if(!($stmt = $mysqli->prepare("SELECT email FROM volunteers"))){
@@ -74,7 +74,6 @@ if($mysqli->connect_errno){
     </div>
   </div>
 
-  <script>var p1 = document.getElementById("email").value;</script>
   <!-- <a id="loginLink" onclick="toggleTable();" href="#">Login</a> -->
 
   <nav class="navbar navbar-default" role="navigation">
@@ -113,7 +112,6 @@ if($mysqli->connect_errno){
     <!-- MySqli statements for filling table -->
 
     <?php
-    echo "<script> document.writeln(p1); </script>";
     if(!($stmt = $mysqli->prepare("
     SELECT locations.lid, locations.region, locations.country, locations.city, locations.cemail, locations.cphone, locations.opdesc, volunteers.email
     FROM locations
