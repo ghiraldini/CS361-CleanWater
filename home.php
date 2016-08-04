@@ -45,7 +45,7 @@ if($mysqli->connect_errno){
     </div>
   </nav>
 
-
+<!--
   <div class="container-fluid">
     <div class="row">
       <div class="col-md-2">
@@ -55,33 +55,33 @@ if($mysqli->connect_errno){
         <div class="col-md-4">
           <select class="col-md-4 form-control" id="email" name="email" method="post" action="populate_tables.php">
             <option class="form-control" value="">Select Current User Email</option>
-            <?php
-            if(!($stmt = $mysqli->prepare("SELECT email FROM volunteers"))){
-              echo "Prepare failed: "  . $stmt->errno . " " . $stmt->error;
-            }
-            if(!$stmt->execute()){
-              echo "Execute failed: "  . $mysqli->connect_errno . " " . $mysqli->connect_error;
-            }
-            if(!$stmt->bind_result($email)){
-              echo "Bind failed: "  . $mysqli->connect_errno . " " . $mysqli->connect_error;
-            }
-            while($stmt->fetch()){
-              echo "<option value=''>" . $email . "</option>\n";
-            }
-            $stmt->close();
-            ?>
+            // <?php
+            // if(!($stmt = $mysqli->prepare("SELECT email FROM volunteers"))){
+              // echo "Prepare failed: "  . $stmt->errno . " " . $stmt->error;
+            // }
+            // if(!$stmt->execute()){
+              // echo "Execute failed: "  . $mysqli->connect_errno . " " . $mysqli->connect_error;
+            // }
+            // if(!$stmt->bind_result($email)){
+              // echo "Bind failed: "  . $mysqli->connect_errno . " " . $mysqli->connect_error;
+            // }
+            // while($stmt->fetch()){
+              // echo "<option value=''>" . $email . "</option>\n";
+            // }
+            // $stmt->close();
+            // ?>
           </select>
           <input type="submit" id="getTables" value="Refresh">
         </form>
       </div>
     </div>
   </div>
-
+-->
   <!-- <a id="loginLink" onclick="toggleTable();" href="#">Login</a> -->
 
   <nav class="navbar navbar-default" role="navigation">
     <ul class="nav navbar-nav pull-left">
-      <li><a href="">Filters:</a></li>
+      <li><a >Filters:</a></li>
       <li><a id="occupation" href="#" >Occupation</a></li>
       <li><a id="region" href="#" >Region</a></li>
       <li><a id="season" href="#" >Season</a></li>
@@ -95,7 +95,8 @@ if($mysqli->connect_errno){
   <!-- ------- ------- ------- ------- ------- ------- ------- ------- ------- ------- ------- ------- ------- ----- -->
 
   <!-- MATCH FILTERS -->
-
+  
+  
   <div class="container-fluid text-center" id="all_matches_div">
     <table class="table" id="matches" align="center">
       <div class="container-fluid text-center">
@@ -113,18 +114,21 @@ if($mysqli->connect_errno){
         <th>Volunteer</th>
       </tr>
       <!-- MySqli statements for filling table -->
-
       <?php
+	  $emailVar = $_POST['email'];
       if(!($stmt = $mysqli->prepare("
       SELECT locations.lid, locations.region, locations.country, locations.city, locations.cemail, locations.cphone, locations.opdesc, volunteers.email
       FROM locations
       INNER JOIN volunteers
-      WHERE (locations.need = volunteers.occupation)
-      OR (locations.region = volunteers.region)
-      OR (volunteers.startDate < locations.endDate AND volunteers.endDate > locations.startDate)
-      OR (volunteers.startDate < locations.endDate AND volunteers.endDate < locations.endDate)
-      OR (volunteers.startDate > locations.startDate AND volunteers.startDate < volunteers.endDate)
-      ORDER BY locations.lid ASC;"))){
+      WHERE (volunteers.email = '$emailVar')
+	  AND 
+		(	(locations.need = volunteers.occupation)
+			OR (locations.region = volunteers.region)
+			OR (volunteers.startDate < locations.endDate AND volunteers.endDate > locations.startDate)
+			OR (volunteers.startDate < locations.endDate AND volunteers.endDate < locations.endDate)
+			OR (volunteers.startDate > locations.startDate AND volunteers.startDate < volunteers.endDate) 
+		)
+	  ORDER BY locations.lid ASC" ))){
         echo "Prepare failed: "  . $stmt->errno . " " . $stmt->error;
       }
       if(!$stmt->execute()){
@@ -163,11 +167,15 @@ if($mysqli->connect_errno){
       <!-- MySqli statements for filling table -->
       <!-- AND volunteers.email = \"dave@moon.com\"; -->
       <?php
+	  $emailVar = $_POST['email'];
       if(!($stmt = $mysqli->prepare("
       SELECT locations.lid, locations.region, locations.country, locations.city, locations.cemail, locations.cphone, locations.opdesc, volunteers.email
       FROM locations
       INNER JOIN volunteers
       WHERE locations.need = volunteers.occupation
+	  AND (
+			volunteers.email = '$emailVar'
+			)
       ORDER BY locations.lid ASC;
       "))){
         echo "Prepare failed: "  . $stmt->errno . " " . $stmt->error;
@@ -210,11 +218,15 @@ if($mysqli->connect_errno){
       <!-- MySqli statements for filling table -->
       <!-- AND volunteers.email = \"dave@moon.com\" -->
       <?php
+	  $emailVar = $_POST['email'];
       if(!($stmt = $mysqli->prepare("
       SELECT locations.lid, locations.region, locations.country, locations.city, locations.cemail, locations.cphone, locations.opdesc, volunteers.email
       FROM locations
       INNER JOIN volunteers
       WHERE locations.region = volunteers.region
+	  AND (
+			volunteers.email = '$emailVar'
+			)
       ORDER BY locations.lid ASC;
       "))){
         echo "Prepare failed: "  . $stmt->errno . " " . $stmt->error;
@@ -257,16 +269,20 @@ if($mysqli->connect_errno){
       <!-- MySqli statements for filling table -->
       <!-- AND volunteers.email = \"dave@moon.com\" -->
       <?php
+	  $emailVar = $_POST['email'];
       if(!($stmt = $mysqli->prepare("
       SELECT locations.lid, locations.region, locations.country, locations.city, locations.cemail, locations.cphone, locations.opdesc, volunteers.email
       FROM locations
       INNER JOIN volunteers
-      WHERE volunteers.startDate < locations.endDate
-      AND volunteers.endDate > locations.startDate
-      OR volunteers.startDate < locations.endDate
-      AND volunteers.endDate < locations.endDate
-      OR volunteers.startDate > locations.startDate
-      AND volunteers.startDate < volunteers.endDate
+      WHERE volunteers.email = '$emailVar'
+	  AND (
+			volunteers.startDate < locations.endDate
+		  AND volunteers.endDate > locations.startDate
+		  OR volunteers.startDate < locations.endDate
+		  AND volunteers.endDate < locations.endDate
+		  OR volunteers.startDate > locations.startDate
+		  AND volunteers.startDate < volunteers.endDate
+		)
       ORDER BY locations.lid ASC;
       "))){
         echo "Prepare failed: "  . $stmt->errno . " " . $stmt->error;
@@ -307,11 +323,15 @@ if($mysqli->connect_errno){
       <!-- MySqli statements for filling table -->
       <!-- AND volunteers.email = \"dave@moon.com\" -->
       <?php
+	  $emailVar = $_POST['email'];
       if(!($stmt = $mysqli->prepare("
       SELECT locations.lid, locations.region, locations.country, locations.city, locations.cemail, locations.cphone, locations.opdesc, volunteers.email
       FROM locations
       INNER JOIN volunteers
       WHERE volunteers.season = locations.season
+	  AND (
+			volunteers.email = '$emailVar'
+			)
       ORDER BY locations.lid ASC;
       "))){
         echo "Prepare failed: "  . $stmt->errno . " " . $stmt->error;
@@ -353,7 +373,6 @@ document.getElementById("dateRange").addEventListener("click", showTime);
 document.getElementById("season").addEventListener("click", showSeason);
 
 function showOccupation() {
-  var p1 = document.getElementById("email").value;
   document.getElementById("all_matches_div").style.display="none";
   document.getElementById("region_matches_div").style.display="none";
   document.getElementById("time_matches_div").style.display="none";
