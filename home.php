@@ -79,7 +79,7 @@ if($mysqli->connect_errno){
   <nav class="navbar navbar-default" role="navigation">
     <ul class="nav navbar-nav pull-left">
       <li><a href="">Filters:</a></li>
-      <li><a href="" id="occupation">Occupation</a></li>
+      <li><a id="occupation">Occupation</a></li>
       <li><a href="" id="region">Region</a></li>
       <li><a href="" id="season">Season</a></li>
       <li><a href="" id="dateRange">Date Range</a></li>
@@ -98,7 +98,8 @@ if($mysqli->connect_errno){
     <!-- ------- ------- ------- ------- ------- ------- ------- ------- ------- ------- ------- ------- ------- ----- -->
 
       <!-- MATCH FILTERS -->
-    <div class="container-fluid text-center" id="all_matches_div" style="display:none">
+   
+ <div class="container-fluid text-center" id="all_matches_div" style="display:none">
     <table class="table" id="matches" align="center">
       <div class="container-fluid text-center">
         <h2> All matches</h2>
@@ -293,7 +294,7 @@ if($mysqli->connect_errno){
 
   <a href="cleanWaterMain.php">Display the current database</a>
 
-  <!-- <script src="home.js"></script> -->
+  <script src="home.js"></script> 
 
   <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
@@ -309,7 +310,7 @@ if($mysqli->connect_errno){
 document.getElementById("matches").addEventListener("click", showOccupation);
 
 function showOccupation() {
-  console.log(inside function);
+  console.log(555 );
   document.getElementById("all_matches_div").style.display="none";
   document.getElementById("region_matches_div").style.display="none";
   document.getElementById("time_matches_div").style.display="none";
