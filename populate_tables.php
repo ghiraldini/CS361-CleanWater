@@ -4,7 +4,9 @@ $mysqli = new mysqli("oniddb.cws.oregonstate.edu","ghiraldj-db","v1bptepGowZ4t1O
 //$mysqli = new mysqli("oniddb.cws.oregonstate.edu","thrashek-db","QybR0dsOjULZ4QtZ","thrashek-db");
 //$mysqli = new mysqli("oniddb.cws.oregonstate.edu","moondav-db","BUyiIi84msF2NNtI","moondav-db");
 
-if(!($stmt = $mysqli->prepare("SELECT * FROM volunteers"))){
+if(!($stmt = $mysqli->prepare("SELECT locations.lid, locations.region, locations.country, locations.city, locations.cemail, locations.cphone, locations.opdesc, volunteers.email
+FROM locations
+INNER JOIN volunteers"))){
   echo "Prepare failed: "  . $stmt->errno . " " . $stmt->error;
 }
 if(!$stmt->execute()){
@@ -17,13 +19,11 @@ while($stmt->fetch()){
   echo "<tr>\n<td>\n" . $lid . "\n</td>\n<td>\n" . $region . "\n</td>\n<td>\n". $country . "\n</td>\n<td>\n" . $city .  "\n</td>\n<td>\n". $cemail .  "\n</td>\n<td>\n".
   $cphone .  "\n</td>\n<td>\n". $opdesc . "\n</td>\n<td>\n" . $email .  "\n</td>\n</tr>";
 }
-header("Refresh: 0, url=home.php");
+// header("Refresh: 0, url=home.php");
 $stmt->close();
 ?>
 
 
-<!-- if(!($stmt = $mysqli->prepare("SELECT locations.lid, locations.region, locations.country, locations.city, locations.cemail, locations.cphone, locations.opdesc, volunteers.email
-FROM locations
-INNER JOIN volunteers
+<!--
 WHERE locations.need = volunteers.occupation
-AND volunteers.email = " . $_POST['email']))){ -->
+AND volunteers.email = " . $_POST['email'] -->
