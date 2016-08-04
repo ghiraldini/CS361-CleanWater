@@ -1,4 +1,7 @@
 <?php
+
+print_r($_POST);
+
 ini_set('display_errors', 'On');
 $mysqli = new mysqli("oniddb.cws.oregonstate.edu","ghiraldj-db","v1bptepGowZ4t1OE","ghiraldj-db");
 //$mysqli = new mysqli("oniddb.cws.oregonstate.edu","thrashek-db","QybR0dsOjULZ4QtZ","thrashek-db");
