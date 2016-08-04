@@ -99,7 +99,7 @@ if($mysqli->connect_errno){
 
 <!-- MATCH FILTERS -->
 
-<div class="container-fluid text-center" id="all_matches_div" style="display:none">
+<div class="container-fluid text-center" id="all_matches_div">
   <table class="table" id="matches" align="center">
     <div class="container-fluid text-center">
       <h2> All matches</h2>
@@ -379,7 +379,7 @@ function showTime() {
 function showSeason() {
   document.getElementById("all_matches_div").style.display="none";
   document.getElementById("region_matches_div").style.display="none";
-  document.getElementById("time_matches_div").style.display="table";
+  document.getElementById("time_matches_div").style.display="none";
   document.getElementById("occupation_matches_div").style.display="none";
   document.getElementById("season_matches_div").style.display="table";
 }
