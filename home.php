@@ -121,7 +121,7 @@ if($mysqli->connect_errno){
     OR (volunteers.startDate < locations.endDate AND volunteers.endDate > locations.startDate)
     OR (volunteers.startDate < locations.endDate AND volunteers.endDate < locations.endDate)
     OR (volunteers.startDate > locations.startDate AND volunteers.startDate < volunteers.endDate)
-    AND volunteers.email = "'$_POST["email"]'"
+    AND volunteers.email = "<script>document.writeln(p1);</script>"
     ORDER BY locations.lid ASC;"))){
       echo "Prepare failed: "  . $stmt->errno . " " . $stmt->error;
     }
@@ -345,6 +345,7 @@ if($mysqli->connect_errno){
 
 
 <script>
+var p1 = document.getElementById("email").value;
 document.getElementById("occupation").addEventListener("click", showOccupation);
 document.getElementById("region").addEventListener("click", showRegion);
 document.getElementById("dateRange").addEventListener("click", showTime);
