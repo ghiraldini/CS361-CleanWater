@@ -4,11 +4,7 @@ $mysqli = new mysqli("oniddb.cws.oregonstate.edu","ghiraldj-db","v1bptepGowZ4t1O
 //$mysqli = new mysqli("oniddb.cws.oregonstate.edu","thrashek-db","QybR0dsOjULZ4QtZ","thrashek-db");
 //$mysqli = new mysqli("oniddb.cws.oregonstate.edu","moondav-db","BUyiIi84msF2NNtI","moondav-db");
 
-if(!($stmt = $mysqli->prepare("SELECT locations.lid, locations.region, locations.country, locations.city, locations.cemail, locations.cphone, locations.opdesc, volunteers.email
-FROM locations
-INNER JOIN volunteers
-WHERE locations.need = volunteers.occupation
-AND volunteers.email = " . $_POST['email']))){
+if(!($stmt = $mysqli->prepare("SELECT * FROM volunteers WHERE volunteers.email = " . $_POST['email']))){
   echo "Prepare failed: "  . $stmt->errno . " " . $stmt->error;
 }
 if(!$stmt->execute()){
@@ -24,3 +20,10 @@ while($stmt->fetch()){
 header("Refresh: 0, url=home.php");
 $stmt->close();
 ?>
+
+
+<!-- if(!($stmt = $mysqli->prepare("SELECT locations.lid, locations.region, locations.country, locations.city, locations.cemail, locations.cphone, locations.opdesc, volunteers.email
+FROM locations
+INNER JOIN volunteers
+WHERE locations.need = volunteers.occupation
+AND volunteers.email = " . $_POST['email']))){ -->
