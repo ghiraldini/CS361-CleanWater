@@ -1,3 +1,3 @@
 <?php
-echo "Populating tables";
+echo "Populating tables for " . $_POST["email"];
 ?>
