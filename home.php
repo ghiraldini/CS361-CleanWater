@@ -307,7 +307,7 @@ if($mysqli->connect_errno){
 
 <script>
 // object.addEventListener("click", myScript);
-document.getElementById("all_matches_div").addEventListener("click", showOccupation);
+document.getElementById("occupation").addEventListener("click", showOccupation);
 
 function showOccupation() {
   console.log(555 );
