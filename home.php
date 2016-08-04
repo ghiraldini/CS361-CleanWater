@@ -112,6 +112,7 @@ if($mysqli->connect_errno){
     <!-- MySqli statements for filling table -->
 
     <?php
+    echo "<script>document.writeln(p1);</script>";
     if(!($stmt = $mysqli->prepare("
     SELECT locations.lid, locations.region, locations.country, locations.city, locations.cemail, locations.cphone, locations.opdesc, volunteers.email
     FROM locations
