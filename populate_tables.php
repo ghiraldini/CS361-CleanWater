@@ -4,7 +4,7 @@ $mysqli = new mysqli("oniddb.cws.oregonstate.edu","ghiraldj-db","v1bptepGowZ4t1O
 //$mysqli = new mysqli("oniddb.cws.oregonstate.edu","thrashek-db","QybR0dsOjULZ4QtZ","thrashek-db");
 //$mysqli = new mysqli("oniddb.cws.oregonstate.edu","moondav-db","BUyiIi84msF2NNtI","moondav-db");
 
-if(!($stmt = $mysqli->prepare("SELECT * FROM volunteers WHERE volunteers.email = \"jason@gmail.com\"))){
+if(!($stmt = $mysqli->prepare("SELECT * FROM volunteers))){
   echo "Prepare failed: "  . $stmt->errno . " " . $stmt->error;
 }
 if(!$stmt->execute()){
