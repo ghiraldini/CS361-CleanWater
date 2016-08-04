@@ -73,7 +73,7 @@ if($mysqli->connect_errno){
       </div>
     </div>
   </div>
-  
+
   <script>var p1 = document.getElementById("email").value;</script>
   <!-- <a id="loginLink" onclick="toggleTable();" href="#">Login</a> -->
 
@@ -113,7 +113,7 @@ if($mysqli->connect_errno){
     <!-- MySqli statements for filling table -->
 
     <?php
-    echo "<script>document.writeln(p1);</script>";
+    echo "<script> document.writeln(p1); </script>";
     if(!($stmt = $mysqli->prepare("
     SELECT locations.lid, locations.region, locations.country, locations.city, locations.cemail, locations.cphone, locations.opdesc, volunteers.email
     FROM locations
@@ -352,6 +352,7 @@ document.getElementById("dateRange").addEventListener("click", showTime);
 document.getElementById("season").addEventListener("click", showSeason);
 
 function showOccupation() {
+  var p1 = document.getElementById("email").value;
   document.getElementById("all_matches_div").style.display="none";
   document.getElementById("region_matches_div").style.display="none";
   document.getElementById("time_matches_div").style.display="none";
