@@ -309,6 +309,7 @@ if($mysqli->connect_errno){
 document.getElementById("matches").addEventListener("click", showOccupation);
 
 function showOccupation() {
+  echo "Inside function";
   document.getElementById("all_matches_div").style.display="none";
   document.getElementById("region_matches_div").style.display="none";
   document.getElementById("time_matches_div").style.display="none";
