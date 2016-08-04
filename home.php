@@ -124,8 +124,7 @@ if($mysqli->connect_errno){
       OR (volunteers.startDate < locations.endDate AND volunteers.endDate > locations.startDate)
       OR (volunteers.startDate < locations.endDate AND volunteers.endDate < locations.endDate)
       OR (volunteers.startDate > locations.startDate AND volunteers.startDate < volunteers.endDate)
-      AND volunteers.email =" . $_POST["email"]
-      "ORDER BY locations.lid ASC;"))){
+      ORDER BY locations.lid ASC;"))){
         echo "Prepare failed: "  . $stmt->errno . " " . $stmt->error;
       }
       if(!$stmt->execute()){
