@@ -80,9 +80,9 @@ if($mysqli->connect_errno){
     <ul class="nav navbar-nav pull-left">
       <li><a href="">Filters:</a></li>
       <li><a id="occupation" href="#" >Occupation</a></li>
-      <li><a href="" id="region">Region</a></li>
-      <li><a href="" id="season">Season</a></li>
-      <li><a href="" id="dateRange">Date Range</a></li>
+      <li><a id="region" href="#" >Region</a></li>
+      <li><a id="season" href="#" >Season</a></li>
+      <li><a id="dateRange" href="#" >Date Range</a></li>
     </ul>
   </nav>
   <br>
@@ -245,7 +245,7 @@ if($mysqli->connect_errno){
 <div class="container-fluid text-center" id="time_matches_div" style="display:none">
   <table class="table" id="matches_time" align="center">
     <div class="container-fluid text-center">
-      <h2> Matches by time</h2>
+      <h2> Matches by date range</h2>
     </div>
     <tr>
       <th>ID </th>
@@ -290,6 +290,50 @@ if($mysqli->connect_errno){
   </table>
 </div>
 
+<!-- Matches by Season -->
+
+<div class="container-fluid text-center" id="season_matches_div" style="display:none">
+  <table class="table" id="matches_time" align="center">
+    <div class="container-fluid text-center">
+      <h2> Matches by season</h2>
+    </div>
+    <tr>
+      <th>ID </th>
+      <th>Region </th>
+      <th>Country</th>
+      <th>City</th>
+      <th>Coordinator Email</th>
+      <th>Coordinator Phone Number</th>
+      <th>Opportunity Description</th>
+      <th>Volunteer</th>
+    </tr>
+    <!-- MySqli statements for filling table -->
+    <!-- AND volunteers.email = \"dave@moon.com\" -->
+    <?php
+    if(!($stmt = $mysqli->prepare("
+    SELECT locations.lid, locations.region, locations.country, locations.city, locations.cemail, locations.cphone, locations.opdesc, volunteers.email
+    FROM locations
+    INNER JOIN volunteers
+    WHERE volunteers.season = locations.season
+    ORDER BY locations.lid ASC;
+    "))){
+      echo "Prepare failed: "  . $stmt->errno . " " . $stmt->error;
+    }
+    if(!$stmt->execute()){
+      echo "Execute failed: "  . $mysqli->connect_errno . " " . $mysqli->connect_error;
+    }
+    if(!$stmt->bind_result($lid, $region, $country, $city, $cemail, $cphone, $opdesc, $email)){
+      echo "Bind failed: "  . $mysqli->connect_errno . " " . $mysqli->connect_error;
+    }
+    while($stmt->fetch()){
+      echo "<tr>\n<td>\n" . $lid . "\n</td>\n<td>\n" . $region . "\n</td>\n<td>\n". $country . "\n</td>\n<td>\n" . $city .  "\n</td>\n<td>\n". $cemail .  "\n</td>\n<td>\n".
+      $cphone .  "\n</td>\n<td>\n" . $opdesc . "\n</td>\n<td>\n" .  $email .  "\n</td>\n</tr>";
+    }
+
+    $stmt->close();
+    ?>
+  </table>
+</div>
 
 
 <a href="cleanWaterMain.php">Display the current database</a>
@@ -306,19 +350,38 @@ if($mysqli->connect_errno){
 
 
 <script>
-// object.addEventListener("click", myScript);
 document.getElementById("occupation").addEventListener("click", showOccupation);
+document.getElementById("region").addEventListener("click", showRegion);
+document.getElementById("dateRange").addEventListener("click", showTime);
+document.getElementById("season").addEventListener("click", showSeason);
 
 function showOccupation() {
-  console.log(555 );
   document.getElementById("all_matches_div").style.display="none";
   document.getElementById("region_matches_div").style.display="none";
   document.getElementById("time_matches_div").style.display="none";
-
-  if (document.getElementById("occupation_matches_div").style.display == "table" ) {
-    document.getElementById("occupation_matches_div").style.display="none";
-  } else {
-    document.getElementById("occupation_matches_div").style.display="table";
-  }
+  document.getElementById("season_matches_div").style.display="none";
+  document.getElementById("occupation_matches_div").style.display="table";
 }
+function showRegion() {
+  document.getElementById("all_matches_div").style.display="none";
+  document.getElementById("season_matches_div").style.display="none";
+  document.getElementById("region_matches_div").style.display="table";
+  document.getElementById("time_matches_div").style.display="none";
+  document.getElementById("occupation_matches_div").style.display="none";
+}
+function showTime() {
+  document.getElementById("all_matches_div").style.display="none";
+  document.getElementById("season_matches_div").style.display="none";
+  document.getElementById("region_matches_div").style.display="none";
+  document.getElementById("time_matches_div").style.display="table";
+  document.getElementById("occupation_matches_div").style.display="none";
+}
+function showSeason() {
+  document.getElementById("all_matches_div").style.display="none";
+  document.getElementById("region_matches_div").style.display="none";
+  document.getElementById("time_matches_div").style.display="table";
+  document.getElementById("occupation_matches_div").style.display="none";
+  document.getElementById("season_matches_div").style.display="table";
+}
+
 </script>
