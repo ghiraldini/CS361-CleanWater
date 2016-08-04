@@ -49,28 +49,30 @@ if($mysqli->connect_errno){
   <div class="container-fluid">
     <div class="row">
       <div class="col-md-2">
-        <h4>Current User Email:</h4>
-      </div>
-      <div class="col-md-4">
-        <select class="col-md-4 form-control" id="email" name="email" method="post" action="populate_tables.php">
-          <option class="form-control" value="">Select Current User Email</option>
-          <?php
-          if(!($stmt = $mysqli->prepare("SELECT email FROM volunteers"))){
-            echo "Prepare failed: "  . $stmt->errno . " " . $stmt->error;
-          }
-          if(!$stmt->execute()){
-            echo "Execute failed: "  . $mysqli->connect_errno . " " . $mysqli->connect_error;
-          }
-          if(!$stmt->bind_result($email)){
-            echo "Bind failed: "  . $mysqli->connect_errno . " " . $mysqli->connect_error;
-          }
-          while($stmt->fetch()){
-            echo "<option value=''>" . $email . "</option>\n";
-          }
-          $stmt->close();
-          ?>
-        </select>
-        <input type="submit" id="getTables" value="Refresh" required="">
+        <form>
+          <h4>Current User Email:</h4>
+        </div>
+        <div class="col-md-4">
+          <select class="col-md-4 form-control" id="email" name="email" method="post" action="populate_tables.php">
+            <option class="form-control" value="">Select Current User Email</option>
+            <?php
+            if(!($stmt = $mysqli->prepare("SELECT email FROM volunteers"))){
+              echo "Prepare failed: "  . $stmt->errno . " " . $stmt->error;
+            }
+            if(!$stmt->execute()){
+              echo "Execute failed: "  . $mysqli->connect_errno . " " . $mysqli->connect_error;
+            }
+            if(!$stmt->bind_result($email)){
+              echo "Bind failed: "  . $mysqli->connect_errno . " " . $mysqli->connect_error;
+            }
+            while($stmt->fetch()){
+              echo "<option value=''>" . $email . "</option>\n";
+            }
+            $stmt->close();
+            ?>
+          </select>
+          <input type="submit" id="getTables" value="Refresh" required="">
+        </form>
       </div>
     </div>
   </div>
@@ -88,257 +90,257 @@ if($mysqli->connect_errno){
   </nav>
   <br>
 
-<!-- ------- ------- ------- ------- ------- ------- ------- ------- ------- ------- ------- ------- ------- ----- -->
-<!--//      ----------------------------------MATCHING  ----------------------------------------------//        ----->
-<!-- ------- ------- ------- ------- ------- ------- ------- ------- ------- ------- ------- ------- ------- ----- -->
+  <!-- ------- ------- ------- ------- ------- ------- ------- ------- ------- ------- ------- ------- ------- ----- -->
+  <!--//      ----------------------------------MATCHING  ----------------------------------------------//        ----->
+  <!-- ------- ------- ------- ------- ------- ------- ------- ------- ------- ------- ------- ------- ------- ----- -->
 
-<!-- MATCH FILTERS -->
+  <!-- MATCH FILTERS -->
 
-<div class="container-fluid text-center" id="all_matches_div">
-  <table class="table" id="matches" align="center">
-    <div class="container-fluid text-center">
-      <h2> All matches</h2>
-    </div>
+  <div class="container-fluid text-center" id="all_matches_div">
+    <table class="table" id="matches" align="center">
+      <div class="container-fluid text-center">
+        <h2> All matches</h2>
+      </div>
 
-    <tr>
-      <th>ID </th>
-      <th>Region </th>
-      <th>Country</th>
-      <th>City</th>
-      <th>Coordinator Email</th>
-      <th>Coordinator Phone Number</th>
-      <th>Opportunity Description</th>
-      <th>Volunteer</th>
-    </tr>
-    <!-- MySqli statements for filling table -->
+      <tr>
+        <th>ID </th>
+        <th>Region </th>
+        <th>Country</th>
+        <th>City</th>
+        <th>Coordinator Email</th>
+        <th>Coordinator Phone Number</th>
+        <th>Opportunity Description</th>
+        <th>Volunteer</th>
+      </tr>
+      <!-- MySqli statements for filling table -->
 
-    <?php
-    if(!($stmt = $mysqli->prepare("
-    SELECT locations.lid, locations.region, locations.country, locations.city, locations.cemail, locations.cphone, locations.opdesc, volunteers.email
-    FROM locations
-    INNER JOIN volunteers
-    WHERE (locations.need = volunteers.occupation)
-    OR (locations.region = volunteers.region)
-    OR (volunteers.startDate < locations.endDate AND volunteers.endDate > locations.startDate)
-    OR (volunteers.startDate < locations.endDate AND volunteers.endDate < locations.endDate)
-    OR (volunteers.startDate > locations.startDate AND volunteers.startDate < volunteers.endDate)
-    ORDER BY locations.lid ASC;"))){
-      echo "Prepare failed: "  . $stmt->errno . " " . $stmt->error;
-    }
-    if(!$stmt->execute()){
-      echo "Execute failed: "  . $mysqli->connect_errno . " " . $mysqli->connect_error;
-    }
-    if(!$stmt->bind_result($lid, $region, $country, $city, $cemail, $cphone, $opdesc, $email)){
-      echo "Bind failed: "  . $mysqli->connect_errno . " " . $mysqli->connect_error;
-    }
-    while($stmt->fetch()){
-      echo "<tr>\n<td>\n" . $lid . "\n</td>\n<td>\n" . $region . "\n</td>\n<td>\n". $country . "\n</td>\n<td>\n" . $city .  "\n</td>\n<td>\n". $cemail .  "\n</td>\n<td>\n".
-      $cphone .  "\n</td>\n<td>\n". $opdesc . "\n</td>\n<td>\n" . $email .  "\n</td>\n</tr>";
-    }
+      <?php
+      if(!($stmt = $mysqli->prepare("
+      SELECT locations.lid, locations.region, locations.country, locations.city, locations.cemail, locations.cphone, locations.opdesc, volunteers.email
+      FROM locations
+      INNER JOIN volunteers
+      WHERE (locations.need = volunteers.occupation)
+      OR (locations.region = volunteers.region)
+      OR (volunteers.startDate < locations.endDate AND volunteers.endDate > locations.startDate)
+      OR (volunteers.startDate < locations.endDate AND volunteers.endDate < locations.endDate)
+      OR (volunteers.startDate > locations.startDate AND volunteers.startDate < volunteers.endDate)
+      ORDER BY locations.lid ASC;"))){
+        echo "Prepare failed: "  . $stmt->errno . " " . $stmt->error;
+      }
+      if(!$stmt->execute()){
+        echo "Execute failed: "  . $mysqli->connect_errno . " " . $mysqli->connect_error;
+      }
+      if(!$stmt->bind_result($lid, $region, $country, $city, $cemail, $cphone, $opdesc, $email)){
+        echo "Bind failed: "  . $mysqli->connect_errno . " " . $mysqli->connect_error;
+      }
+      while($stmt->fetch()){
+        echo "<tr>\n<td>\n" . $lid . "\n</td>\n<td>\n" . $region . "\n</td>\n<td>\n". $country . "\n</td>\n<td>\n" . $city .  "\n</td>\n<td>\n". $cemail .  "\n</td>\n<td>\n".
+        $cphone .  "\n</td>\n<td>\n". $opdesc . "\n</td>\n<td>\n" . $email .  "\n</td>\n</tr>";
+      }
 
-    $stmt->close();
-    ?>
-  </table>
-</div>
-
-
-<!-- MATCH FILTER BY OCCUPATION -->
-<div class="container-fluid text-center" id="occupation_matches_div" style="display:none">
-  <table class="table" id="matches_occupation" align="center">
-    <div class="container-fluid text-center">
-      <h2> Matches by occupation</h2>
-    </div>
-    <tr>
-      <th>ID </th>
-      <th>Region </th>
-      <th>Country</th>
-      <th>City</th>
-      <th>Coordinator Email</th>
-      <th>Coordinator Phone Number</th>
-      <th>Opportunity Description</th>
-      <th>Volunteer</th>
-    </tr>
-    <!-- MySqli statements for filling table -->
-    <!-- AND volunteers.email = \"dave@moon.com\"; -->
-    <?php
-    if(!($stmt = $mysqli->prepare("
-    SELECT locations.lid, locations.region, locations.country, locations.city, locations.cemail, locations.cphone, locations.opdesc, volunteers.email
-    FROM locations
-    INNER JOIN volunteers
-    WHERE locations.need = volunteers.occupation
-    ORDER BY locations.lid ASC;
-    "))){
-      echo "Prepare failed: "  . $stmt->errno . " " . $stmt->error;
-    }
-    if(!$stmt->execute()){
-      echo "Execute failed: "  . $mysqli->connect_errno . " " . $mysqli->connect_error;
-    }
-    if(!$stmt->bind_result($lid, $region, $country, $city, $cemail, $cphone, $opdesc, $email)){
-      echo "Bind failed: "  . $mysqli->connect_errno . " " . $mysqli->connect_error;
-    }
-    while($stmt->fetch()){
-      echo "<tr>\n<td>\n" . $lid . "\n</td>\n<td>\n" . $region . "\n</td>\n<td>\n". $country . "\n</td>\n<td>\n" . $city .  "\n</td>\n<td>\n". $cemail .  "\n</td>\n<td>\n".
-      $cphone .  "\n</td>\n<td>\n". $opdesc . "\n</td>\n<td>\n" . $email .  "\n</td>\n</tr>";
-    }
-
-    $stmt->close();
-    ?>
-  </table>
-</div>
+      $stmt->close();
+      ?>
+    </table>
+  </div>
 
 
+  <!-- MATCH FILTER BY OCCUPATION -->
+  <div class="container-fluid text-center" id="occupation_matches_div" style="display:none">
+    <table class="table" id="matches_occupation" align="center">
+      <div class="container-fluid text-center">
+        <h2> Matches by occupation</h2>
+      </div>
+      <tr>
+        <th>ID </th>
+        <th>Region </th>
+        <th>Country</th>
+        <th>City</th>
+        <th>Coordinator Email</th>
+        <th>Coordinator Phone Number</th>
+        <th>Opportunity Description</th>
+        <th>Volunteer</th>
+      </tr>
+      <!-- MySqli statements for filling table -->
+      <!-- AND volunteers.email = \"dave@moon.com\"; -->
+      <?php
+      if(!($stmt = $mysqli->prepare("
+      SELECT locations.lid, locations.region, locations.country, locations.city, locations.cemail, locations.cphone, locations.opdesc, volunteers.email
+      FROM locations
+      INNER JOIN volunteers
+      WHERE locations.need = volunteers.occupation
+      ORDER BY locations.lid ASC;
+      "))){
+        echo "Prepare failed: "  . $stmt->errno . " " . $stmt->error;
+      }
+      if(!$stmt->execute()){
+        echo "Execute failed: "  . $mysqli->connect_errno . " " . $mysqli->connect_error;
+      }
+      if(!$stmt->bind_result($lid, $region, $country, $city, $cemail, $cphone, $opdesc, $email)){
+        echo "Bind failed: "  . $mysqli->connect_errno . " " . $mysqli->connect_error;
+      }
+      while($stmt->fetch()){
+        echo "<tr>\n<td>\n" . $lid . "\n</td>\n<td>\n" . $region . "\n</td>\n<td>\n". $country . "\n</td>\n<td>\n" . $city .  "\n</td>\n<td>\n". $cemail .  "\n</td>\n<td>\n".
+        $cphone .  "\n</td>\n<td>\n". $opdesc . "\n</td>\n<td>\n" . $email .  "\n</td>\n</tr>";
+      }
 
-
-<!-- MATCHES FILTER BY REGION -->
-<div class="container-fluid text-center" id="region_matches_div" style="display:none">
-  <table class="table" id="matches_region" align="center">
-    <div class="container-fluid text-center">
-      <h2> Matches by region</h2>
-    </div>
-    <tr>
-      <th>ID </th>
-      <th>Region </th>
-      <th>Country</th>
-      <th>City</th>
-      <th>Coordinator Email</th>
-      <th>Coordinator Phone Number</th>
-      <th>Opportunity Description</th>
-      <th>Volunteer</th>
-    </tr>
-    <!-- MySqli statements for filling table -->
-    <!-- AND volunteers.email = \"dave@moon.com\" -->
-    <?php
-    if(!($stmt = $mysqli->prepare("
-    SELECT locations.lid, locations.region, locations.country, locations.city, locations.cemail, locations.cphone, locations.opdesc, volunteers.email
-    FROM locations
-    INNER JOIN volunteers
-    WHERE locations.region = volunteers.region
-    ORDER BY locations.lid ASC;
-    "))){
-      echo "Prepare failed: "  . $stmt->errno . " " . $stmt->error;
-    }
-    if(!$stmt->execute()){
-      echo "Execute failed: "  . $mysqli->connect_errno . " " . $mysqli->connect_error;
-    }
-    if(!$stmt->bind_result($lid, $region, $country, $city, $cemail, $cphone, $opdesc, $email)){
-      echo "Bind failed: "  . $mysqli->connect_errno . " " . $mysqli->connect_error;
-    }
-    while($stmt->fetch()){
-      echo "<tr>\n<td>\n" . $lid . "\n</td>\n<td>\n" . $region . "\n</td>\n<td>\n". $country . "\n</td>\n<td>\n" . $city .  "\n</td>\n<td>\n". $cemail .  "\n</td>\n<td>\n".
-      $cphone .  "\n</td>\n<td>\n". $opdesc . "\n</td>\n<td>\n" . $email .  "\n</td>\n</tr>";
-    }
-
-    $stmt->close();
-    ?>
-  </table>
-</div>
+      $stmt->close();
+      ?>
+    </table>
+  </div>
 
 
 
-<!-- MATCHES FILTER BY TIME -->
 
-<div class="container-fluid text-center" id="time_matches_div" style="display:none">
-  <table class="table" id="matches_time" align="center">
-    <div class="container-fluid text-center">
-      <h2> Matches by date range</h2>
-    </div>
-    <tr>
-      <th>ID </th>
-      <th>Region </th>
-      <th>Country</th>
-      <th>City</th>
-      <th>Coordinator Email</th>
-      <th>Coordinator Phone Number</th>
-      <th>Opportunity Description</th>
-      <th>Volunteer</th>
-    </tr>
-    <!-- MySqli statements for filling table -->
-    <!-- AND volunteers.email = \"dave@moon.com\" -->
-    <?php
-    if(!($stmt = $mysqli->prepare("
-    SELECT locations.lid, locations.region, locations.country, locations.city, locations.cemail, locations.cphone, locations.opdesc, volunteers.email
-    FROM locations
-    INNER JOIN volunteers
-    WHERE volunteers.startDate < locations.endDate
-    AND volunteers.endDate > locations.startDate
-    OR volunteers.startDate < locations.endDate
-    AND volunteers.endDate < locations.endDate
-    OR volunteers.startDate > locations.startDate
-    AND volunteers.startDate < volunteers.endDate
-    ORDER BY locations.lid ASC;
-    "))){
-      echo "Prepare failed: "  . $stmt->errno . " " . $stmt->error;
-    }
-    if(!$stmt->execute()){
-      echo "Execute failed: "  . $mysqli->connect_errno . " " . $mysqli->connect_error;
-    }
-    if(!$stmt->bind_result($lid, $region, $country, $city, $cemail, $cphone, $opdesc, $email)){
-      echo "Bind failed: "  . $mysqli->connect_errno . " " . $mysqli->connect_error;
-    }
-    while($stmt->fetch()){
-      echo "<tr>\n<td>\n" . $lid . "\n</td>\n<td>\n" . $region . "\n</td>\n<td>\n". $country . "\n</td>\n<td>\n" . $city .  "\n</td>\n<td>\n". $cemail .  "\n</td>\n<td>\n".
-      $cphone .  "\n</td>\n<td>\n" . $opdesc . "\n</td>\n<td>\n" .  $email .  "\n</td>\n</tr>";
-    }
+  <!-- MATCHES FILTER BY REGION -->
+  <div class="container-fluid text-center" id="region_matches_div" style="display:none">
+    <table class="table" id="matches_region" align="center">
+      <div class="container-fluid text-center">
+        <h2> Matches by region</h2>
+      </div>
+      <tr>
+        <th>ID </th>
+        <th>Region </th>
+        <th>Country</th>
+        <th>City</th>
+        <th>Coordinator Email</th>
+        <th>Coordinator Phone Number</th>
+        <th>Opportunity Description</th>
+        <th>Volunteer</th>
+      </tr>
+      <!-- MySqli statements for filling table -->
+      <!-- AND volunteers.email = \"dave@moon.com\" -->
+      <?php
+      if(!($stmt = $mysqli->prepare("
+      SELECT locations.lid, locations.region, locations.country, locations.city, locations.cemail, locations.cphone, locations.opdesc, volunteers.email
+      FROM locations
+      INNER JOIN volunteers
+      WHERE locations.region = volunteers.region
+      ORDER BY locations.lid ASC;
+      "))){
+        echo "Prepare failed: "  . $stmt->errno . " " . $stmt->error;
+      }
+      if(!$stmt->execute()){
+        echo "Execute failed: "  . $mysqli->connect_errno . " " . $mysqli->connect_error;
+      }
+      if(!$stmt->bind_result($lid, $region, $country, $city, $cemail, $cphone, $opdesc, $email)){
+        echo "Bind failed: "  . $mysqli->connect_errno . " " . $mysqli->connect_error;
+      }
+      while($stmt->fetch()){
+        echo "<tr>\n<td>\n" . $lid . "\n</td>\n<td>\n" . $region . "\n</td>\n<td>\n". $country . "\n</td>\n<td>\n" . $city .  "\n</td>\n<td>\n". $cemail .  "\n</td>\n<td>\n".
+        $cphone .  "\n</td>\n<td>\n". $opdesc . "\n</td>\n<td>\n" . $email .  "\n</td>\n</tr>";
+      }
 
-    $stmt->close();
-    ?>
-  </table>
-</div>
-
-<!-- Matches by Season -->
-
-<div class="container-fluid text-center" id="season_matches_div" style="display:none">
-  <table class="table" id="matches_time" align="center">
-    <div class="container-fluid text-center">
-      <h2> Matches by season</h2>
-    </div>
-    <tr>
-      <th>ID </th>
-      <th>Region </th>
-      <th>Country</th>
-      <th>City</th>
-      <th>Coordinator Email</th>
-      <th>Coordinator Phone Number</th>
-      <th>Opportunity Description</th>
-      <th>Volunteer</th>
-    </tr>
-    <!-- MySqli statements for filling table -->
-    <!-- AND volunteers.email = \"dave@moon.com\" -->
-    <?php
-    if(!($stmt = $mysqli->prepare("
-    SELECT locations.lid, locations.region, locations.country, locations.city, locations.cemail, locations.cphone, locations.opdesc, volunteers.email
-    FROM locations
-    INNER JOIN volunteers
-    WHERE volunteers.season = locations.season
-    ORDER BY locations.lid ASC;
-    "))){
-      echo "Prepare failed: "  . $stmt->errno . " " . $stmt->error;
-    }
-    if(!$stmt->execute()){
-      echo "Execute failed: "  . $mysqli->connect_errno . " " . $mysqli->connect_error;
-    }
-    if(!$stmt->bind_result($lid, $region, $country, $city, $cemail, $cphone, $opdesc, $email)){
-      echo "Bind failed: "  . $mysqli->connect_errno . " " . $mysqli->connect_error;
-    }
-    while($stmt->fetch()){
-      echo "<tr>\n<td>\n" . $lid . "\n</td>\n<td>\n" . $region . "\n</td>\n<td>\n". $country . "\n</td>\n<td>\n" . $city .  "\n</td>\n<td>\n". $cemail .  "\n</td>\n<td>\n".
-      $cphone .  "\n</td>\n<td>\n" . $opdesc . "\n</td>\n<td>\n" .  $email .  "\n</td>\n</tr>";
-    }
-
-    $stmt->close();
-    ?>
-  </table>
-</div>
+      $stmt->close();
+      ?>
+    </table>
+  </div>
 
 
-<a href="cleanWaterMain.php">Display the current database</a>
 
-<script src="home.js"></script>
+  <!-- MATCHES FILTER BY TIME -->
 
-<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<!-- Include all compiled plugins (below), or include individual files as needed -->
-<script src="bootstrap-3.3.7-dist/js/bootstrap.js"></script>
+  <div class="container-fluid text-center" id="time_matches_div" style="display:none">
+    <table class="table" id="matches_time" align="center">
+      <div class="container-fluid text-center">
+        <h2> Matches by date range</h2>
+      </div>
+      <tr>
+        <th>ID </th>
+        <th>Region </th>
+        <th>Country</th>
+        <th>City</th>
+        <th>Coordinator Email</th>
+        <th>Coordinator Phone Number</th>
+        <th>Opportunity Description</th>
+        <th>Volunteer</th>
+      </tr>
+      <!-- MySqli statements for filling table -->
+      <!-- AND volunteers.email = \"dave@moon.com\" -->
+      <?php
+      if(!($stmt = $mysqli->prepare("
+      SELECT locations.lid, locations.region, locations.country, locations.city, locations.cemail, locations.cphone, locations.opdesc, volunteers.email
+      FROM locations
+      INNER JOIN volunteers
+      WHERE volunteers.startDate < locations.endDate
+      AND volunteers.endDate > locations.startDate
+      OR volunteers.startDate < locations.endDate
+      AND volunteers.endDate < locations.endDate
+      OR volunteers.startDate > locations.startDate
+      AND volunteers.startDate < volunteers.endDate
+      ORDER BY locations.lid ASC;
+      "))){
+        echo "Prepare failed: "  . $stmt->errno . " " . $stmt->error;
+      }
+      if(!$stmt->execute()){
+        echo "Execute failed: "  . $mysqli->connect_errno . " " . $mysqli->connect_error;
+      }
+      if(!$stmt->bind_result($lid, $region, $country, $city, $cemail, $cphone, $opdesc, $email)){
+        echo "Bind failed: "  . $mysqli->connect_errno . " " . $mysqli->connect_error;
+      }
+      while($stmt->fetch()){
+        echo "<tr>\n<td>\n" . $lid . "\n</td>\n<td>\n" . $region . "\n</td>\n<td>\n". $country . "\n</td>\n<td>\n" . $city .  "\n</td>\n<td>\n". $cemail .  "\n</td>\n<td>\n".
+        $cphone .  "\n</td>\n<td>\n" . $opdesc . "\n</td>\n<td>\n" .  $email .  "\n</td>\n</tr>";
+      }
+
+      $stmt->close();
+      ?>
+    </table>
+  </div>
+
+  <!-- Matches by Season -->
+
+  <div class="container-fluid text-center" id="season_matches_div" style="display:none">
+    <table class="table" id="matches_time" align="center">
+      <div class="container-fluid text-center">
+        <h2> Matches by season</h2>
+      </div>
+      <tr>
+        <th>ID </th>
+        <th>Region </th>
+        <th>Country</th>
+        <th>City</th>
+        <th>Coordinator Email</th>
+        <th>Coordinator Phone Number</th>
+        <th>Opportunity Description</th>
+        <th>Volunteer</th>
+      </tr>
+      <!-- MySqli statements for filling table -->
+      <!-- AND volunteers.email = \"dave@moon.com\" -->
+      <?php
+      if(!($stmt = $mysqli->prepare("
+      SELECT locations.lid, locations.region, locations.country, locations.city, locations.cemail, locations.cphone, locations.opdesc, volunteers.email
+      FROM locations
+      INNER JOIN volunteers
+      WHERE volunteers.season = locations.season
+      ORDER BY locations.lid ASC;
+      "))){
+        echo "Prepare failed: "  . $stmt->errno . " " . $stmt->error;
+      }
+      if(!$stmt->execute()){
+        echo "Execute failed: "  . $mysqli->connect_errno . " " . $mysqli->connect_error;
+      }
+      if(!$stmt->bind_result($lid, $region, $country, $city, $cemail, $cphone, $opdesc, $email)){
+        echo "Bind failed: "  . $mysqli->connect_errno . " " . $mysqli->connect_error;
+      }
+      while($stmt->fetch()){
+        echo "<tr>\n<td>\n" . $lid . "\n</td>\n<td>\n" . $region . "\n</td>\n<td>\n". $country . "\n</td>\n<td>\n" . $city .  "\n</td>\n<td>\n". $cemail .  "\n</td>\n<td>\n".
+        $cphone .  "\n</td>\n<td>\n" . $opdesc . "\n</td>\n<td>\n" .  $email .  "\n</td>\n</tr>";
+      }
+
+      $stmt->close();
+      ?>
+    </table>
+  </div>
+
+
+  <a href="cleanWaterMain.php">Display the current database</a>
+
+  <script src="home.js"></script>
+
+  <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <!-- Include all compiled plugins (below), or include individual files as needed -->
+  <script src="bootstrap-3.3.7-dist/js/bootstrap.js"></script>
 </body>
 </html>
 
