@@ -52,7 +52,7 @@ if($mysqli->connect_errno){
         <h4>Current User Email:</h4>
       </div>
       <div class="col-md-4">
-        <select class="col-md-4 form-control" id="email" name="email" action="populate_tables.php">
+        <select class="col-md-4 form-control" id="email" name="email" method="post" action="populate_tables.php">
           <option class="form-control" value="">Select Current User Email</option>
           <?php
           if(!($stmt = $mysqli->prepare("SELECT email FROM volunteers"))){
@@ -70,6 +70,7 @@ if($mysqli->connect_errno){
           $stmt->close();
           ?>
         </select>
+        <input type="submit" id="getTables" value="Refresh" required="">
       </div>
     </div>
   </div>
