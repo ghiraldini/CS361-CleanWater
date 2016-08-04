@@ -18,7 +18,9 @@ if (!empty($_POST)){
 
   if(!($stmt = $mysqli->prepare("SELECT locations.lid, locations.region, locations.country, locations.city, locations.cemail, locations.cphone, locations.opdesc, volunteers.email
     FROM locations
-    INNER JOIN volunteers"))){
+    INNER JOIN volunteers
+    WHERE locations.need = volunteers.occupation
+    AND volunteers.email = $emailVar"))){
       echo "Prepare failed: "  . $stmt->errno . " " . $stmt->error;
     }
   }
