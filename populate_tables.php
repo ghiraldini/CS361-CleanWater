@@ -1,17 +1,23 @@
 <?php
 
-print_r($_POST['email']);
-
-
 ini_set('display_errors', 'On');
 $mysqli = new mysqli("oniddb.cws.oregonstate.edu","ghiraldj-db","v1bptepGowZ4t1OE","ghiraldj-db");
 //$mysqli = new mysqli("oniddb.cws.oregonstate.edu","thrashek-db","QybR0dsOjULZ4QtZ","thrashek-db");
 //$mysqli = new mysqli("oniddb.cws.oregonstate.edu","moondav-db","BUyiIi84msF2NNtI","moondav-db");
+
+if(!$mysqli || $mysqli->connect_errno){
+	echo "Connection error " . $mysqli->connect_errno . " " . $mysqli->connect_error;
+    echo "<br>";
+	}
+
 if (!empty($_POST)){
+
+  print_r($_POST['email']);
+
   if(!($stmt = $mysqli->prepare("SELECT locations.lid, locations.region, locations.country, locations.city, locations.cemail, locations.cphone, locations.opdesc, volunteers.email
     FROM locations
     INNER JOIN volunteers
-    WHERE volunteers.email = $_POST['email']"))){
+    WHERE volunteers.email != " . $_POST['email']))){
       echo "Prepare failed: "  . $stmt->errno . " " . $stmt->error;
     }
   }
