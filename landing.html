@@ -49,36 +49,33 @@
                 </blockquote>
             </div>
 
-            <div class="col-md-6">
-            	<h3 class="header-text">Clean Water Login</h3>
-                <form action="home.php" method="post" class="form-group form-style img-rounded" role="form">
-                    <a name="login"></a>
-                    <!-- <h4>Enter your username and password to login:</h4> -->
-                    <h4>Enter your email to login:</h4>
+            <div class="container col-md-6">
+                <form action="home.php" method="post" class="form-style img-rounded col-md-12" role="form">
+                  <div>
+                    <h3 class="header-text" style="color:#003366">Clean Water Login</h3>
+                  </div>
+                  <hr>
+                    <a name="login"></a>  <!--Not sure what this is for [David Moon]-->
                     <p></p>
 
-                    <div class="form-group row">
-                        <label class="col-md-2" for="email">Email:</label>
+                    <div class="row">
+                        <label class="col-md-2 control-label pull-left" for="email">Email:</label>
                         <div class="col-md-8">
-                            <!-- <input class="form-control col-md-6" type="email" id="email" placeholder="email"> -->
-                            <input class="form-control col-md-6" type="email" id="email" name="email">
+                            <input class="form-control" type="email" id="email" name="email" placeholder="example@gmail.com">
                         </div>
                     </div>
+                    <p></p>
+                    <div class="row">
+                      <small class="col-md-offset-2 col-md-10 text-muted">Enter your email address to login as a volunteer</small>
+                    </div>
+                    <p></p>
 
-                    <!-- <div class="form-group row">
-                        <div class="col-md-2">
-                            <label for="password">Password:</label>
-                        </div>
-                        <div class="col-md-8">
-                            <input class="form-control" type="password" id="password" placeholder="password">
-                        </div>
-                    </div> -->
-
-	                <!-- <button type="button" class="btn btn-default button-style" onclick="window.location.href='landing.html'">Cancel</button> -->
-
-	                <input type="submit" class="btn btn-primary button-style" value="Login">
-
-	                <a href="signup.php">Sign Up</a>
+                  <div class="row">
+                    <div class="col-md-offset-2">
+                      <input type="submit" class="btn btn-primary button-style" value="Login">
+                      <a href="signup.php">Sign Up</a>
+                    </div>
+                  </div>
 				        </form>
             </div>
         </div>
