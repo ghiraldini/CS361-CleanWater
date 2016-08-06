@@ -353,7 +353,7 @@ if($mysqli->connect_errno){
   </div>
 
 
-  <a href="cleanWaterMain.php">Display the current database</a>
+  <a href="cleanWaterMain.php">Link to database contents for testing</a>
 
   <script src="home.js"></script>
 
