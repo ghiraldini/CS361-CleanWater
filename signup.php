@@ -48,7 +48,7 @@
     <div class="col-md-12">
          <h3 class="header-text">New User Profile</h3>
         <form class="form-group form-style img-rounded" role="form" name="volunteerForm" onsubmit="return compare()" method="post" action="addVolunteer.php">
-                
+
             <!--First name and Last name -->
             <div class="form-group row">
                 <label class="col-md-1" for="text">First Name:</label>
@@ -130,7 +130,7 @@
                     </select>
                 </div>
             </div>
-            
+
             <!--
             <label> Occupation:
                 <input type="text" name="occupation" id="occupation">
