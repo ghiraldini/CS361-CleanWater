@@ -49,12 +49,12 @@ if($mysqli->connect_errno){
   <body>
   	<nav class="navbar navbar-inverse" role="navigation">
   		<div class="navbar-header">
-  			<a href="#" class="navbar-brand">Home</a>
+  			<a href="landing.html" class="navbar-brand">Home</a>
   		</div>
 
   		<div>
   			<ul class="nav navbar-nav pull-right">
-  				<li><a href="home.html#">Logout</a></li>
+  				<li><a href="landing.html">Logout</a></li>
   			</ul>
   		</div>
   	</nav>
